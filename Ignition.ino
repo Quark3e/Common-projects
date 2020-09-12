@@ -8,16 +8,16 @@ int solenoid = 11;
 int relay = 9;
 int flame = 2;
 int pos = 0;
-int flame_sensor = A2; // variable to store the value coming from the sensor
+int analogFlameVal = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
 
-const int max_threshold = 461;
-const int min_threshold = 473;
+const int max_SoundThresh = 461;
+const int min_SoundThresh = 473;
+const int FlameThresh = 580;
 
                                  
 void setup()
 {
-  
   Serial.begin(9600);
  
   
@@ -25,7 +25,7 @@ void setup()
   pinMode(solenoid, OUTPUT);
   pinMode(relay, OUTPUT);
   pinMode(flame, INPUT);
-  pinMode(flame_sensor, INPUT);
+  pinMode(analogFlameVal, INPUT);
   pinMode(sound_sensor, INPUT);
   pinMode(buttonPin, INPUT_PULLUP);
   
@@ -37,76 +37,78 @@ void setup()
 void loop()
 {
   //analogRead(sound_sensor);
-  //int analogValue = analogRead(sound_sensor);
+  //int analogSoundVal = analogRead(sound_sensor);
   //analogRead(sound_sensor);
   //Serial.println(analogRead(sound_sensor));
   //delay(10);
-    int analogValue = analogRead(sound_sensor);
+  
+    int analogSoundVal = analogRead(sound_sensor);
     analogRead(sound_sensor);
+    
     //Serial.println(analogRead(sound_sensor));
     //delay(10);
 
-    if (analogValue >= max_threshold) {
-
-    int buttonValue = digitalRead(buttonPin);
-
+    if (analogSoundVal >= max_SoundThresh) {
+    //int buttonValue = digitalRead(buttonPin);
     //if (buttonValue == LOW) {
-
-    //if (analogValue >= max_threshold) {
-      //int analogPerma = analogValue;
-     // if (analogPerma <= min_threshold) {
+      //if (analogSoundVal >= max_SoundThresh) {
+      //int analogPerma = analogSoundVal;
+      if (analogSoundVal <= min_SoundThresh) {
         //Serial.print("CLAP DETECTED! ");
         //Serial.print("Sensor Value: ");
         //Serial.println(analogRead(sound));
-
-        Serial.println(digitalRead(buttonPin));
+        //Serial.println(digitalRead(buttonPin));
   
         digitalWrite(led1, HIGH);
+
         for (pos = 92; pos <= 130; pos+=1) { //92 degrees is the home position of the servo
         myservo.write(pos);
         delay(10);
         }
+
         delay(1000);
-    
-        for (int i=0; i<=35; i++) {
+
+        for (int i=0; i<=35; i++) { //time period where the relay is closed/in-contact
           digitalWrite(relay, HIGH);
           delay(10);
         }
+
         digitalWrite(relay, LOW);
 
-        //delay(2000);
-    
-        //flame_sensor = analogRead(A2);
+        //analogFlameVal = analogRead(flame_sensor);
+        //analogRead(flame_sensor);
         
         //int x = buttonValue;
         delay(100);
         //int buttonValue = digitalRead(buttonPin);
-        delay(100);
+        //delay(100);
     
-        for ( 0; buttonValue == 0; digitalRead(buttonPin)){
+        //for (0; buttonValue == 0; digitalRead(buttonPin)){
+        for (0; analogFlameVal >= FlameThresh; analogRead(flame_sensor)) {
           //delay(100);
-          digitalRead(buttonPin);
-          int buttonValue = digitalRead(buttonPin);
-          Serial.println(digitalRead(buttonValue));
+          //digitalRead(buttonPin);
           //int buttonValue = digitalRead(buttonPin);
-          //Serial.println(analogRead(flame_sensor));
-          //flame_sensor = analogRead(A2);
-          if (buttonValue == 1) {
+          //Serial.println(digitalRead(buttonValue));
+          //Serial.println(analogRead(analogFlameVal));
+          analogRead(flame_sensor);
+          int analogFlameVal = analogRead(flame_sensor);
+          if (analogFlameVal < FlameThresh) {
+          //if (buttonValue == 1) {
             break;
           }
+          //}
         }
-        Serial.println(buttonValue);
+        //Serial.println(buttonValue);
+        //Serial.println(analogFlameVal);
     
-        //Serial.println(flame_sensor);
-    
-        for (pos = 130; pos >= 92; pos-=1) {
+        for (pos = 130; pos >= 92; pos-=1) { //turn servo motor back //closing butane valve
         myservo.write(pos);
         delay(10);
         }
         digitalWrite(led1, LOW);
         delay(1000);
-    //}
-  }
+        }
+    }
 
   int buttonValue = digitalRead(buttonPin);
   if (buttonValue == LOW) {
@@ -115,25 +117,27 @@ void loop()
         delay(10);
         }
     delay(1000);
-    digitalWrite(relay, HIGH);
+    for (int i=0; i<=49; i++) { //time period where the relay is closed/in-contact
+          digitalWrite(relay, HIGH);
+          delay(10);
+        }
     for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
           //delay(100);
           digitalRead(buttonPin);
           int buttonValue = digitalRead(buttonPin);
           Serial.println(digitalRead(buttonValue));
           //int buttonValue = digitalRead(buttonPin);
-          //Serial.println(analogRead(flame_sensor));
-          //flame_sensor = analogRead(A2);
+          //Serial.println(analogRead(analogFlameVal));
+          //analogFlameVal = analogRead(A2);
           if (buttonValue == 1) {
             break;
           }
         }
-       digitalWrite(relay, LOW);
        for (pos = 130; pos >= 92; pos-=1) {
        myservo.write(pos);
        delay(10);
+       //the sequence ends
        }
   }
-  
 }
   
