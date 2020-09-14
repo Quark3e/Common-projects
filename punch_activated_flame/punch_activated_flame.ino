@@ -6,11 +6,11 @@ int ADXL345 = 0x53; // The ADXL345 sensor I2C address
 float X_out, Y_out, Z_out;
 
 
-int accelData = 20 //in m/s^2
-int decelData = -40
+int accelData = 20; //in m/s^2
+int decelData = -40;
 int solenoid = 12;
-int led =
-int flametime = 250 //in ms
+int led = 13;
+int flametime = 250; //in ms
 
 void setup () {
     pinMode(solenoid, OUTPUT);

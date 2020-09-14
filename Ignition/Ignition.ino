@@ -136,6 +136,8 @@ void loop()
             break;
           }
         }
+
+       digitalWrite(relay, LOW);
        for (pos = 130; pos >= 92; pos-=1) {
        myservo.write(pos);
        delay(10);

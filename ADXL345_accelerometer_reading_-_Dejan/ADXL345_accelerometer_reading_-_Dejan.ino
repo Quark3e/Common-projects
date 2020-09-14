@@ -1,12 +1,20 @@
+#include <ADXL345.h>
+
+//#include <Adafruit_ADXL345_U.h>
+
 /*
     Arduino and ADXL345 Accelerometer Tutorial
      by Dejan, https://howtomechatronics.com
 */
+
 #include <Wire.h>  // Wire library - used for I2C communication
 
 
+
 int ADXL345 = 0x53; // The ADXL345 sensor I2C address
+
 float X_out, Y_out, Z_out;  // Outputs
+
 void setup() {
   Serial.begin(9600); // Initiate serial communication for printing the results on the Serial monitor
   Wire.begin(); // Initiate the Wire library
@@ -18,6 +26,7 @@ void setup() {
   Wire.endTransmission();
   delay(10);
 }
+
 void loop() {
   // === Read acceleromter data === //
   Wire.beginTransmission(ADXL345);
@@ -30,10 +39,11 @@ void loop() {
   Y_out = Y_out/256;
   Z_out = ( Wire.read()| Wire.read() << 8); // Z-axis value
   Z_out = Z_out/256;
+
   Serial.print("Xa= ");
   Serial.print(X_out);
-  Serial.print("Ya= ");
+  Serial.print("   Ya= ");
   Serial.print(Y_out);
-  Serial.print("Za= ");
+  Serial.print("   Za= ");
   Serial.println(Z_out);
 }
