@@ -1,4 +1,7 @@
+#include <Adafruit_ADXL345_U.h>
 #include <Wire.h>  // Wire library - used for I2C communication
+
+
 int ADXL345 = 0x53; // The ADXL345 sensor I2C address
 float X_out, Y_out, Z_out;
 
@@ -10,7 +13,6 @@ int led =
 int flametime = 250 //in ms
 
 void setup () {
-    pinMode(accelData, INPUT);
     pinMode(solenoid, OUTPUT);
     pinMode(led, OUTPUT);
 
@@ -31,11 +33,11 @@ void loop () {
     Wire.endTransmission(false);
     Wire.requestFrom(ADXL345, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
     X_out = ( Wire.read()| Wire.read() << 8); // X-axis value
-    X_out = X_out/256; //For a range of +-2g, we need to divide the raw values by 256, according to the datasheet
+    X_out = X_out/32; //For a range of +-2g, we need to divide the raw values by 256, according to the datasheet
     Y_out = ( Wire.read()| Wire.read() << 8); // Y-axis value
-    Y_out = Y_out/256;
+    Y_out = Y_out/32;
     Z_out = ( Wire.read()| Wire.read() << 8); // Z-axis value
-    Z_out = Z_out/256;
+    Z_out = Z_out/32;
     Serial.print("Xa= ");
     Serial.print(X_out);
     Serial.print("Ya= ");
