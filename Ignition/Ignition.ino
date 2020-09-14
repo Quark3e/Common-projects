@@ -13,7 +13,7 @@ int buttonPin = 12;
 
 const int max_SoundThresh = 461;
 const int min_SoundThresh = 473;
-const int FlameThresh = 580;
+const int FlameThresh = 1050;
 
                                  
 void setup()
