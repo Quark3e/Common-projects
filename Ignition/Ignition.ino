@@ -8,7 +8,7 @@ int solenoid = 11;
 int relay = 9;
 int flame = 2;
 int pos = 0;
-int analogFlameVal = A2; // variable to store the value coming from the sensor
+int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
 
 const int max_SoundThresh = 461;
@@ -25,7 +25,7 @@ void setup()
   pinMode(solenoid, OUTPUT);
   pinMode(relay, OUTPUT);
   pinMode(flame, INPUT);
-  pinMode(analogFlameVal, INPUT);
+  pinMode(flame_sensor, INPUT);
   pinMode(sound_sensor, INPUT);
   pinMode(buttonPin, INPUT_PULLUP);
   
@@ -75,8 +75,8 @@ void loop()
 
         digitalWrite(relay, LOW);
 
-        //analogFlameVal = analogRead(flame_sensor);
-        //analogRead(flame_sensor);
+        int analogFlameVal = analogRead(flame_sensor);
+        analogRead(flame_sensor);
         
         //int x = buttonValue;
         delay(100);
