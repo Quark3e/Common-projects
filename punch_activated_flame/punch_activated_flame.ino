@@ -8,7 +8,7 @@ float X_out, Y_out, Z_out;
 
 int accelData = 20 //in m/s^2
 int decelData = -40
-int solenoid = 
+int solenoid = 12;
 int led =
 int flametime = 250 //in ms
 
