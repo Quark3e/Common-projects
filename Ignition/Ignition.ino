@@ -110,6 +110,9 @@ void loop()
         }
     }
 
+// separate activation method ----------------------------------------------------------------------------------------
+
+
   int buttonValue = digitalRead(buttonPin);
   if (buttonValue == LOW) {
     for (pos = 92; pos <= 130; pos+=1) { //92 degrees is the home position of the servo
