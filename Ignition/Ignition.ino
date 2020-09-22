@@ -137,6 +137,10 @@ void loop()
             break;
           }
         }
+        for (pos = 130; pos >= 92; pos-=1) { //92 degrees is the home position of the servo
+        myservo.write(pos);
+        delay(10);
+        }
 
        //the sequence ends
        }
