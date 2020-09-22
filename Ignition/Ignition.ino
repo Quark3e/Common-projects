@@ -124,6 +124,7 @@ void loop()
           digitalWrite(relay, HIGH);
           delay(10);
         }
+        dgitialWrite(relay, LOW);
     for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
           //delay(100);
           digitalRead(buttonPin);
@@ -137,10 +138,6 @@ void loop()
           }
         }
 
-       digitalWrite(relay, LOW);
-       for (pos = 130; pos >= 92; pos-=1) {
-       myservo.write(pos);
-       delay(10);
        //the sequence ends
        }
   }
