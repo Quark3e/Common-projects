@@ -25,3 +25,25 @@ int punchDecel = -40;
 int flameTimeShort = 150;
 int flameTimeMedium = 250;
 int flameTImeLong = 500;
+
+int solenoid = 8;
+int igniter = 9; //igniter = relay
+
+void setup(void) {
+    Serial.begin(9600);
+    Serial.printLn("LIS3DH test");
+    if (! lis.begin(0x18)) { //i2c address //can be changed to 0x19(?)
+        Serial.println("Couldn't start");
+        while (1);
+    }
+    Serial.println("LIS3DH found");
+
+    lis.setRange(LIS3DH_16_6); //16 for +-16g //gives a good wider range
+    Serial.print("Range = "); Serial.print(2 << lis.getRange());
+    Serial.println("G");
+
+    pinMode(solenoid, OUTPUT);
+    pinMode(igniter, OUTPUT);
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+}
