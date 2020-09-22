@@ -64,7 +64,7 @@ void loop() {
     if (event.acceleration.x < punchDecel && - punchStart < punchInterval) {
         Serial.println(event.acceleration.x);
         Serial.println("Punch");
-        Fire(flameTIme);
+        Fire(flameTimeMedium);
     }
 }
 
