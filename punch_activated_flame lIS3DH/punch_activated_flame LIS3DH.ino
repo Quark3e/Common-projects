@@ -18,8 +18,9 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3D
 
 
 unsigned long punchStart = 0;
-const long punchInterval = 200;
-int punchAccel = 20; //faster/stronger punch means higher acceleration
+const long punchIntervalShort = 200;
+const long punchIntervalMedium =
+int punchAccel = 20; //faster-stronger punch means higher acceleration
 int punchDecel = -40;
 
 int flameTimeShort = 150;
@@ -59,12 +60,14 @@ void loop() {
         punchStart = millis();
     }
 
-    unsigned long currentMIllis = millis();
+    unsigned long currentMillis = millis();
 
-    if (event.acceleration.x < punchDecel && - punchStart < punchInterval) {
+    if (event.acceleration.x < punchDecel && currentMillis - punchStart < punchInterval){
         Serial.println(event.acceleration.x);
         Serial.println("Punch");
-        Fire(flameTimeMedium);
+        Serial.println(currentMillis);
+        Serial.println(punchStart);
+        Fire(flameTime);
     }
 }
 
