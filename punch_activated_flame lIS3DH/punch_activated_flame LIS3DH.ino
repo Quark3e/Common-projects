@@ -47,3 +47,31 @@ void setup(void) {
     digitalWrite(8, LOW);
     digitalWrite(9, LOW);
 }
+
+void loop() {
+    lis.read();
+    sensors_event_t event;
+    lis.getEvent(&event);
+
+    //look for punch
+    if (event.acceleration.x > punchAccel) {
+        Serial.println(event.acceleration.x);
+        punchStart = millis();
+    }
+
+    unsigned long currentMIllis = millis();
+
+    if (event.acceleration.x < punchDecel && - punchStart < punchInterval) {
+        Serial.println(event.acceleration.x);
+        Serial.println("Punch");
+        Fire(flameTIme);
+    }
+}
+
+void Fire(int flameTimeMedium) {
+    digitalWrite(solenoid, HIGH);
+    digitalWrite(igniter, HIGH);
+    delay(flameTimeMedium);
+    digitalWrite(solenoid, LOW);
+    digitalWrite(igniter, LOW);
+}
