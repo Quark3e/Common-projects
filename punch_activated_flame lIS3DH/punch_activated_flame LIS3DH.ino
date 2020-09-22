@@ -18,14 +18,18 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3D
 
 
 unsigned long punchStart = 0;
-const long punchIntervalShort = 200;
-const long punchIntervalMedium =
+const long punchInterval = 200;
+//const long punchIntervalShort = 90; //this should later be changed //ms
+//const long punchIntervalMedium = 130;
+//const long punchIntervalLong = 210;
 int punchAccel = 20; //faster-stronger punch means higher acceleration
 int punchDecel = -40;
 
 int flameTimeShort = 150;
 int flameTimeMedium = 250;
-int flameTImeLong = 500;
+int flameTimeLong = 500;
+
+int flameTimeAuto = 0;
 
 int solenoid = 8;
 int igniter = 9; //igniter = relay
@@ -67,14 +71,16 @@ void loop() {
         Serial.println("Punch");
         Serial.println(currentMillis);
         Serial.println(punchStart);
-        Fire(flameTime);
+        int flameTimeAuto = currentMillis;
+        Fire(flameTimeAuto);
+        
     }
 }
 
-void Fire(int flameTimeMedium) {
+void Fire(int flameTimeAuto) {
     digitalWrite(solenoid, HIGH);
     digitalWrite(igniter, HIGH);
-    delay(flameTimeMedium);
+    delay(flameTimeAuto);
     digitalWrite(solenoid, LOW);
     digitalWrite(igniter, LOW);
 }
