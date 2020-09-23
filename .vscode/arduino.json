@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "punch activated flame.ino"
+    "sketch": "punch_activated_flame lIS3DH\\punch_activated_flame LIS3DH.ino"
 }
