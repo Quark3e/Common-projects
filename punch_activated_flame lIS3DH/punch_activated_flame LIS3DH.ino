@@ -18,7 +18,7 @@ Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3D
 
 
 unsigned long punchStart = 0;
-const long punchInterval = 200;
+const long punchInterval = 200; //basically the duration from punch start to punch ending
 //const long punchIntervalShort = 90; //this should later be changed //ms
 //const long punchIntervalMedium = 130;
 //const long punchIntervalLong = 210;
