@@ -3,6 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
+                "\\\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel",
                 "\\\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_LIS3DH",
                 "\\\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_Unified_Sensor",
                 "C:\\Users\\erikg\\Documents\\Arduino\\libraries\\Adafruit_ADXL345",
