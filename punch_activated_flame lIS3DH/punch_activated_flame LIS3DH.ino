@@ -26,6 +26,7 @@ int punchDecel = -40;
 int flameTimeShort = 150;
 int flameTimeMedium = 250;
 int flameTimeLong = 500;
+//int flameTimeAuto = 300;
 
 int flameTimeAuto = 0;
 
