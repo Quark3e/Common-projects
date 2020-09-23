@@ -1,4 +1,4 @@
-//remeber to add library in afterwards
+//remember to add library in afterwards
 
 #include <Wire.h>
 #include <SPI.h>
