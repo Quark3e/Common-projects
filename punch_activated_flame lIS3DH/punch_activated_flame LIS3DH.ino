@@ -72,39 +72,49 @@ void loop() {
         Serial.println(currentMillis);
         Serial.println(punchStart);
         int flameTimeAuto = currentMillis;
-        Fire(flameTimeAuto);
+        //Fire(flameTimeAuto);
+        if (currentMillis < 120) {
+            Fire(flameTimeShort);
+        }
+        if (currentMillis <= 120 && currentMillis < 151) {
+            Fire(flameTimeMedium);
+        }
+        if (currentMillis > 151 && currentMillis <= 200) {
+            Fire(flameTimeLong);
+        }
+        
         
     }
 }
 
-void Fire(int flameTimeAuto) {
+//void Fire(int flameTimeAuto) {
+    //digitalWrite(solenoid, HIGH);
+    //digitalWrite(igniter, HIGH);
+    //delay(flameTimeAuto);
+    //digitalWrite(solenoid, LOW);
+    //digitalWrite(igniter, LOW);
+//}
+
+void Fire(int flameTimeShort) {
     digitalWrite(solenoid, HIGH);
     digitalWrite(igniter, HIGH);
-    delay(flameTimeAuto);
+    delay(flameTimeShort);
     digitalWrite(solenoid, LOW);
     digitalWrite(igniter, LOW);
 }
 
-//void Fire(int flameTimeShort) {
-    //digitalWrite(solenoid, HIGH);
-    //digitalWrite(igniter, HIGH);
-    //delay(flameTimeShort);
-    //digitalWrite(solenoid, LOW);
-    //digitalWrite(igniter, LOW);
-//}
+void Fire(int flameTimeMedium) {
+    digitalWrite(solenoid, HIGH);
+    digitalWrite(igniter, HIGH);
+    delay(flameTimeMedium);
+    digitalWrite(solenoid, LOW);
+    digitalWrite(igniter, LOW);
+}
 
-//void Fire(int flameTimeMedium) {
-    //digitalWrite(solenoid, HIGH);
-    //digitalWrite(igniter, HIGH);
-    //delay(flameTimeMedium);
-    //digitalWrite(solenoid, LOW);
-    //digitalWrite(igniter, LOW);
-//}
-
-//void Fire(int flameTimeLong) {
-    //digitalWrite(solenoid, HIGH);
-    //digitalWrite(igniter, HIGH);
-    //delay(flameTimeLong);
-    //digitalWrite(solenoid, LOW);
-    //digitalWrite(igniter, LOW);
-//}
+void Fire(int flameTimeLong) {
+    digitalWrite(solenoid, HIGH);
+    digitalWrite(igniter, HIGH);
+    delay(flameTimeLong);
+    digitalWrite(solenoid, LOW);
+    digitalWrite(igniter, LOW);
+}
