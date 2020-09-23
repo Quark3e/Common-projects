@@ -1,9 +1,3 @@
-
-
-
-
-//remember to add library in afterwards
-
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_LIS3DH.h>
