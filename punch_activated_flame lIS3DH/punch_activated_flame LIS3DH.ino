@@ -84,3 +84,27 @@ void Fire(int flameTimeAuto) {
     digitalWrite(solenoid, LOW);
     digitalWrite(igniter, LOW);
 }
+
+//void Fire(int flameTimeShort) {
+    //digitalWrite(solenoid, HIGH);
+    //digitalWrite(igniter, HIGH);
+    //delay(flameTimeShort);
+    //digitalWrite(solenoid, LOW);
+    //digitalWrite(igniter, LOW);
+//}
+
+//void Fire(int flameTimeMedium) {
+    //digitalWrite(solenoid, HIGH);
+    //digitalWrite(igniter, HIGH);
+    //delay(flameTimeMedium);
+    //digitalWrite(solenoid, LOW);
+    //digitalWrite(igniter, LOW);
+//}
+
+//void Fire(int flameTimeLong) {
+    //digitalWrite(solenoid, HIGH);
+    //digitalWrite(igniter, HIGH);
+    //delay(flameTimeLong);
+    //digitalWrite(solenoid, LOW);
+    //digitalWrite(igniter, LOW);
+//}
