@@ -34,14 +34,14 @@ int igniter = 9; //igniter = relay
 
 void setup(void) {
     Serial.begin(9600);
-    Serial.printLn("LIS3DH test");
+    Serial.println("LIS3DH test");
     if (! lis.begin(0x18)) { //i2c address //can be changed to 0x19(?)
         Serial.println("Couldn't start");
         while (1);
     }
     Serial.println("LIS3DH found");
 
-    lis.setRange(LIS3DH_16_6); //16 for +-16g //gives a good wider range
+    lis.setRange(LIS3DH_RANGE_16_G); //16 for +-16g //gives a good wider range
     Serial.print("Range = "); Serial.print(2 << lis.getRange());
     Serial.println("G");
 
@@ -72,15 +72,15 @@ void loop() {
         int flameTimeAuto = currentMillis;
         //Fire(flameTimeAuto);
         if (currentMillis < 120) {
-            Fire(flameTimeShort);
+            FireShort(flameTimeShort);
             Serial.println("Small flame");
         }
         if (currentMillis <= 120 && currentMillis < 151) {
-            Fire(flameTimeMedium);
+            FireMedium(flameTimeMedium);
             Serial.println("Medium flame");
         }
         if (currentMillis > 151 && currentMillis <= 200) {
-            Fire(flameTimeLong);
+            FireLong(flameTimeLong);
             Serial.println("Big flame");
         }
         
@@ -96,7 +96,7 @@ void loop() {
     //digitalWrite(igniter, LOW);
 //}
 
-void Fire(int flameTimeShort) {
+void FireShort(int flameTimeShort) {
     digitalWrite(solenoid, HIGH);
     digitalWrite(igniter, HIGH);
     delay(flameTimeShort);
@@ -104,7 +104,7 @@ void Fire(int flameTimeShort) {
     digitalWrite(igniter, LOW);
 }
 
-void Fire(int flameTimeMedium) {
+void FireMedium(int flameTimeMedium) {
     digitalWrite(solenoid, HIGH);
     digitalWrite(igniter, HIGH);
     delay(flameTimeMedium);
@@ -112,7 +112,7 @@ void Fire(int flameTimeMedium) {
     digitalWrite(igniter, LOW);
 }
 
-void Fire(int flameTimeLong) {
+void FireLong(int flameTimeLong) {
     digitalWrite(solenoid, HIGH);
     digitalWrite(igniter, HIGH);
     delay(flameTimeLong);
