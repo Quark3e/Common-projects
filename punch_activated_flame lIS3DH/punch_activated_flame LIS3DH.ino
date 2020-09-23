@@ -75,12 +75,15 @@ void loop() {
         //Fire(flameTimeAuto);
         if (currentMillis < 120) {
             Fire(flameTimeShort);
+            Serial.println("Small flame");
         }
         if (currentMillis <= 120 && currentMillis < 151) {
             Fire(flameTimeMedium);
+            Serial.println("Medium flame");
         }
         if (currentMillis > 151 && currentMillis <= 200) {
             Fire(flameTimeLong);
+            Serial.println("Big flame");
         }
         
         
