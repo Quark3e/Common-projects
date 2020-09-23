@@ -1,4 +1,4 @@
-#include <Wire.h>
+#include <Wire.h> //adafruit neopixel
 #include <SPI.h>
 #include <Adafruit_LIS3DH.h>
 #include <Adafruit_Sensor.h>
