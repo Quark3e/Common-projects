@@ -1,3 +1,4 @@
 Ideas:
-- Deployable mask
+- Deployable mask (mechanics)
+- Location sensing robot arm assistant (video tracking/servo)
 - 
