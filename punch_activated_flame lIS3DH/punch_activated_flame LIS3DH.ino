@@ -14,6 +14,9 @@
 //software SPI
 Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3DH__CLK);
 
+const shortVal = 120;
+const mediumVal = 150;
+const longVal = 200;
 
 unsigned long punchStart = 0;
 const long punchInterval = 200; //basically the duration from punch start to punch ending
@@ -72,15 +75,15 @@ void loop() {
         Serial.println(punchStart);
         int flameTimeAuto = currentMillis;
         //Fire(flameTimeAuto);
-        if (currentMillis < 120) {
+        if (currentMillis < shortVal) {
             FireShort(flameTimeShort);
             Serial.println("Small flame");
         }
-        if (currentMillis <= 120 && currentMillis < 151) {
+        if (currentMillis >= shortVal && currentMillis < mediumVal) {
             FireMedium(flameTimeMedium);
             Serial.println("Medium flame");
         }
-        if (currentMillis > 151 && currentMillis <= 200) {
+        if (currentMillis >= mediumVal && currentMillis <= longVal) {
             FireLong(flameTimeLong);
             Serial.println("Big flame");
         }
