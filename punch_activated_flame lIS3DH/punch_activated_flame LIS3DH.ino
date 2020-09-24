@@ -67,7 +67,7 @@ void loop() {
 
     if (event.acceleration.x < punchDecel && currentMillis - punchStart < punchInterval){
         Serial.println(event.acceleration.x);
-        Serial.println("Punch");
+        Serial.println("Punch registered");
         Serial.println(currentMillis);
         Serial.println(punchStart);
         int flameTimeAuto = currentMillis;
