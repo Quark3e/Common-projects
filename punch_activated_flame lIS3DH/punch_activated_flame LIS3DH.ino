@@ -39,7 +39,7 @@ int igniter = 9; //igniter = relay
 void setup(void) {
     Serial.begin(9600);
     Serial.println("LIS3DH test");
-    if (! lis.begin(0x18)) { //i2c address //can be changed to 0x19(?)
+    if (! lis.begin(0x18)) { //i2c address //can be changed to 0x19(?) for alternative address
         Serial.println("Couldn't start");
         while (1);
     }
