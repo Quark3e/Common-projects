@@ -14,9 +14,9 @@
 //software SPI
 Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3DH__CLK);
 
-const shortVal = 120;
-const mediumVal = 150;
-const longVal = 200;
+const int shortVal = 120;
+const int mediumVal = 150;
+const int longVal = 200;
 
 unsigned long punchStart = 0;
 const long punchInterval = 200; //basically the duration from punch start to punch ending
