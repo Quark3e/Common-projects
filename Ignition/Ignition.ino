@@ -122,7 +122,7 @@ void loop()
     delay(1000);
     for (int i=0; i<=49; i++) { //time period where the relay is closed/in-contact
           digitalWrite(relay, HIGH);
-          delay(10);
+          delay(5);
         }
         digitalWrite(relay, LOW);
     for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
