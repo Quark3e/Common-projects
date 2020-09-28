@@ -124,7 +124,7 @@ void loop()
           digitalWrite(relay, HIGH);
           delay(10);
         }
-        dgitialWrite(relay, LOW);
+        digitalWrite(relay, LOW);
     for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
           //delay(100);
           digitalRead(buttonPin);
@@ -145,5 +145,5 @@ void loop()
        //the sequence ends
        }
   }
-}
+
   
