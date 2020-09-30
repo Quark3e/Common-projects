@@ -66,7 +66,7 @@ void loop()
         delay(10);
         }
 
-        delay(1000);
+        delay(100);
 
         for (int i=0; i<=35; i++) { //time period where the relay is closed/in-contact
           digitalWrite(relay, HIGH);
@@ -119,7 +119,7 @@ void loop()
         myservo.write(pos);
         delay(10);
         }
-    delay(1000);
+    delay(100);
     for (int i=0; i<=49; i++) { //time period where the relay is closed/in-contact
           digitalWrite(relay, HIGH);
           delay(5);
