@@ -10,6 +10,7 @@ void setup() {
 void loop() {
     int buttonVal = digitalRead(button);
     if (buttonVal == LOW) {
+        Serial.println("button =" + buttonVal);
         digitalWrite(LED, HIGH);
         for ( 0; buttonVal == LOW; digitalRead(button)) {
             digitalRead(button);
@@ -18,4 +19,5 @@ void loop() {
         }
     }
     digitalWrite(LED, LOW);
+    Serial.println("button =" + buttonVal);
 }
