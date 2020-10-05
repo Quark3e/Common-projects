@@ -14,7 +14,6 @@
                 "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\tools\\**"
             ],
             "forcedInclude": [
-                "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "intelliSenseMode": "msvc-x64"

@@ -18,7 +18,7 @@ const int FlameThresh = 1050;
                                  
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
  
   
   pinMode(led1, OUTPUT);
@@ -79,27 +79,29 @@ void loop()
         analogRead(flame_sensor);
         
         //int x = buttonValue;
-        delay(100);
         //int buttonValue = digitalRead(buttonPin);
         //delay(100);
     
+        //custom flame closing
         //for (0; buttonValue == 0; digitalRead(buttonPin)){
-        for (0; analogFlameVal >= FlameThresh; analogRead(flame_sensor)) {
+        //for (0; analogFlameVal >= FlameThresh; analogRead(flame_sensor)) {
           //delay(100);
           //digitalRead(buttonPin);
           //int buttonValue = digitalRead(buttonPin);
           //Serial.println(digitalRead(buttonValue));
           //Serial.println(analogRead(analogFlameVal));
-          analogRead(flame_sensor);
-          int analogFlameVal = analogRead(flame_sensor);
-          if (analogFlameVal < FlameThresh) {
+          //analogRead(flame_sensor);
+          //int analogFlameVal = analogRead(flame_sensor);
+          //if (analogFlameVal < FlameThresh) {
           //if (buttonValue == 1) {
-            break;
-          }
+            //break;
           //}
-        }
+          //}
+        //}
         //Serial.println(buttonValue);
         //Serial.println(analogFlameVal);
+
+        delay(4000);
     
         for (pos = 130; pos >= 92; pos-=1) { //turn servo motor back //closing butane valve
         myservo.write(pos);
