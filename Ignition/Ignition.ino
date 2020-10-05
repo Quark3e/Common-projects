@@ -11,8 +11,8 @@ int pos = 0;
 int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
 
-const int max_SoundThresh = 461;
-const int min_SoundThresh = 473;
+const int max_SoundThresh = 481;
+const int min_SoundThresh = 503;
 const int FlameThresh = 1050;
 
                                  
@@ -66,7 +66,7 @@ void loop()
         delay(10);
         }
 
-        delay(100);
+        delay(700);
 
         for (int i=0; i<=35; i++) { //time period where the relay is closed/in-contact
           digitalWrite(relay, HIGH);
@@ -101,7 +101,7 @@ void loop()
         //Serial.println(buttonValue);
         //Serial.println(analogFlameVal);
 
-        delay(4000);
+        delay(1500);
     
         for (pos = 130; pos >= 92; pos-=1) { //turn servo motor back //closing butane valve
         myservo.write(pos);
