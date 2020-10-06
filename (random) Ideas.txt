@@ -1,4 +1,10 @@
 Ideas:
 - Deployable mask (mechanics)
-- Location sensing robot arm assistant (video tracking/servo)
-- 
+    - google glasses integrated HUD display
+    - might need deployable support from "neck bottom part"
+      for the mask to stay snug on the face. Otherwise a band
+- Location sensing robot arm assistant (video image tracking (/servo))
+- Ignition v2.0: Simpler version
+    - use solenoid actuator instead of servo motor
+    - connect all to one button instead of using a noice sensor. Not as
+      advanced, but hey. This version could fit in your pocket so don't complain.

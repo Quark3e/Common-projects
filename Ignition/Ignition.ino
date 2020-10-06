@@ -10,6 +10,7 @@ int flame = 2;
 int pos = 0;
 int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
+int buttonIgniter = unsigned;
 
 const int max_SoundThresh = 481;
 const int min_SoundThresh = 503;
@@ -58,7 +59,11 @@ void loop()
         //Serial.print("Sensor Value: ");
         //Serial.println(analogRead(sound));
         //Serial.println(digitalRead(buttonPin));
+<<<<<<< HEAD
+        delay(200);
+=======
         delay(500);
+>>>>>>> 65d4719c83880287ab9ff36ea0f5a099e9d2f1b9
   
         digitalWrite(led1, HIGH);
 
@@ -111,42 +116,77 @@ void loop()
         digitalWrite(led1, LOW);
         delay(1000);
         }
+
+        int buttonValue = digitalRead(buttonPin);
+        if (buttonValue == LOW) {
+          FireButton(buttonIgniter);
+        }
+        
     }
 
 // separate activation method ----------------------------------------------------------------------------------------
 
+  digitalRead(buttonPin);
 
-  int buttonValue = digitalRead(buttonPin);
-  if (buttonValue == LOW) {
-    for (pos = 92; pos <= 130; pos+=1) { //92 degrees is the home position of the servo
-        myservo.write(pos);
-        delay(10);
-        }
-    delay(100);
-    for (int i=0; i<=49; i++) { //time period where the relay is closed/in-contact
-          digitalWrite(relay, HIGH);
-          delay(5);
-        }
-        digitalWrite(relay, LOW);
-    for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
+  //int buttonValue = digitalRead(buttonPin);
+  //if (buttonValue == LOW) {
+    //for (pos = 92; pos <= 130; pos+=1) { //92 degrees is the home position of the servo
+        //myservo.write(pos);
+        //delay(10);
+        //}
+    //delay(100);
+    //for (int i=0; i<=49; i++) { //time period where the relay is closed/in-contact
+          //digitalWrite(relay, HIGH);
+          //delay(5);
+        //}
+        //digitalWrite(relay, LOW);
+    //for ( 0; buttonValue == 0; digitalRead(buttonPin)) {
           //delay(100);
-          digitalRead(buttonPin);
-          int buttonValue = digitalRead(buttonPin);
-          Serial.println(digitalRead(buttonValue));
+          //digitalRead(buttonPin);
+          //int buttonValue = digitalRead(buttonPin);
+          //Serial.println(digitalRead(buttonValue));
           //int buttonValue = digitalRead(buttonPin);
           //Serial.println(analogRead(analogFlameVal));
           //analogFlameVal = analogRead(A2);
-          if (buttonValue == 1) {
-            break;
-          }
-        }
-        for (pos = 130; pos >= 92; pos-=1) { //92 degrees is the home position of the servo
-        myservo.write(pos);
-        delay(10);
-        }
+          //if (buttonValue == 1) {
+            //break;
+          //}
+        //}
+        //for (pos = 130; pos >= 92; pos-=1) { //92 degrees is the home position of the servo
+        //myservo.write(pos);
+        //delay(10);
+        //}
 
        //the sequence ends
-       }
+       //}
+       
   }
+
+  void FireButton(int buttonIgniter) {
+    int buttonValue = digitalRead(buttonPin);
+    for (pos = 92; pos <= 10; pos +=1) {
+      myservo.write(pos);
+      delay(10);
+    }
+    delay(100);
+    for (int i=0; i<=49; i++) {
+      digitalWrite(relay, HIGH);
+      delay(5);
+    }
+    digitalWrite(relay, LOW);
+    for (buttonValue = 0; buttonValue == 0; digitalRead(buttonPin)) {
+      digitalRead(buttonPin);
+      int buttonValue = digitalRead(buttonPin);
+      Serial.prinln(digitalRead(buttonValue));
+      if (buttonValue == 1) {
+        break;
+      }
+    }
+    for (pos = 130; pos >=92; pos-=1) {
+      myservo.write(pos);
+      delay(10);
+    }
+  }
+  
 
   
