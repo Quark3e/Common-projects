@@ -59,11 +59,7 @@ void loop()
         //Serial.print("Sensor Value: ");
         //Serial.println(analogRead(sound));
         //Serial.println(digitalRead(buttonPin));
-<<<<<<< HEAD
         delay(200);
-=======
-        delay(500);
->>>>>>> 65d4719c83880287ab9ff36ea0f5a099e9d2f1b9
   
         digitalWrite(led1, HIGH);
 
