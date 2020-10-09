@@ -10,7 +10,7 @@ int flame = 2;
 int pos = 0;
 int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
-int buttonIgniter = unsigned;
+int buttonIgniter = 0;
 
 const int max_SoundThresh = 481;
 const int min_SoundThresh = 503;
@@ -173,7 +173,7 @@ void loop()
     for (buttonValue = 0; buttonValue == 0; digitalRead(buttonPin)) {
       digitalRead(buttonPin);
       int buttonValue = digitalRead(buttonPin);
-      Serial.prinln(digitalRead(buttonValue));
+      Serial.println(digitalRead(buttonValue));
       if (buttonValue == 1) {
         break;
       }

@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "\\\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\arduino_113723\\src",
+                "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\arduino_113723\\src",
                 "C:\\Users\\erikg\\Documents\\Arduino\\libraries\\EduIntro\\src",
                 "C:\\Users\\erikg\\Documents\\Arduino\\libraries\\Servo\\src",
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel",
@@ -17,7 +17,8 @@
                 "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\tools\\**"
             ],
             "forcedInclude": [
-                "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+                "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "intelliSenseMode": "msvc-x64"
         }
