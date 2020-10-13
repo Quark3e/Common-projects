@@ -57,7 +57,7 @@ void loop()
 
         digitalWrite(relay, LOW);
 
-        for ( 0; analogSoundVal >= max_SoundThresh; analogRead(sound_sensor)) {
+        for ( 0; analogSoundVal < max_SoundThresh; analogRead(sound_sensor)) {
             analogRead(sound_sensor);
             int analogSoundVal = digitalRead(sound_sensor);
             delay(10);
