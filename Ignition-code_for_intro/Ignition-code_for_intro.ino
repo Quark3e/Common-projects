@@ -10,6 +10,7 @@ int flame = 2;
 int pos = 0;
 int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
+
 int buttonIgniter = 0;
 
 const int max_SoundThresh = 481;
