@@ -62,11 +62,10 @@ void loop()
         analogRead(sound_sensor);
         Serial.println(analogSoundVal);
 
-        for ( 0; analogSoundVal <= max_SoundThresh; analogRead(sound_sensor)) {
+        for ( 0; analogSoundVal < max_SoundThresh; analogRead(sound_sensor)) {
             
             int analogSoundVal = analogRead(sound_sensor);
             analogRead(sound_sensor);
-            delay(10);
             
             int buttonValue = digitalRead(buttonPin);
             if (analogSoundVal >= max_SoundThresh) {
