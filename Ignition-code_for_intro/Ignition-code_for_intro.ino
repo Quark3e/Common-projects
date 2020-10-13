@@ -62,15 +62,28 @@ void loop()
         analogRead(sound_sensor);
         Serial.println(analogSoundVal);
 
-        for ( 0; analogSoundVal < max_SoundThresh; analogRead(sound_sensor)) {
+        for ( 0; analogSoundVal <= max_SoundThresh; analogRead(sound_sensor)) {
             
             int analogSoundVal = analogRead(sound_sensor);
             analogRead(sound_sensor);
             delay(10);
             
             int buttonValue = digitalRead(buttonPin);
-            Serial.println(analogSoundVal);
+            if (analogSoundVal >= max_SoundThresh) {
+              Serial.println(analogSoundVal);
+            }
+            if (analogSoundVal >= max_SoundThresh) {
+                break;
+            }
         }
+        delay(700);
+        for (int i=0; i<=35; i++) {
+            digitalWrite(relay, HIGH);
+            delay(10);
+        }
+        digitalWrite(relay, LOW);
+
+        delay(4000);
         for (pos = 130; pos >= 92; pos-=1) {
             myservo.write(pos);
             delay(10);
