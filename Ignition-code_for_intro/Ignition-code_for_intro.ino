@@ -63,9 +63,6 @@ void loop()
             delay(10);
             
             int buttonValue = digitalRead(buttonPin);
-            if (buttonValue == LOW) {
-                break;
-            }
         }
         for (pos = 130; pos >= 92; pos-=1) {
             myservo.write(pos);
