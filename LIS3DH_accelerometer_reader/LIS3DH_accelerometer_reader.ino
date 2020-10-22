@@ -14,28 +14,6 @@
 //software SPI
 Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3DH__CLK);
 
-const int shortVal = 120;
-const int mediumVal = 150;
-const int longVal = 200;
-
-unsigned long punchStart = 0;
-const long punchInterval = 200; //basically the duration from punch start to punch ending
-//const long punchIntervalShort = 90; //this should later be changed //ms
-//const long punchIntervalMedium = 130;
-//const long punchIntervalLong = 210;
-int punchAccel = 20; //faster-stronger punch means higher acceleration
-int punchDecel = -40;
-
-int flameTimeShort = 150;
-int flameTimeMedium = 250;
-int flameTimeLong = 500;
-//int flameTimeAuto = 300;
-
-int flameTimeAuto = 0;
-
-int solenoid = 8;
-int igniter = 9; //igniter = relay
-
 void setup(void) {
     Serial.begin(9600);
     Serial.println("LIS3DH test");
@@ -49,10 +27,6 @@ void setup(void) {
     Serial.print("Range = "); Serial.print(2 << lis.getRange());
     Serial.println("G");
 
-    pinMode(solenoid, OUTPUT);
-    pinMode(igniter, OUTPUT);
-    digitalWrite(8, LOW);
-    digitalWrite(9, LOW);
 }
 
 void loop() {
