@@ -2,5 +2,5 @@
     "port": "COM6",
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "punch_activated_flame LIS3DH\\punch_activated_flame LIS3DH.ino"
+    "sketch": "Ignition\\Ignition.ino"
 }
