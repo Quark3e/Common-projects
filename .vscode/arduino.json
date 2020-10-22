@@ -2,5 +2,5 @@
     "port": "COM6",
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "Ignition\\Ignition.ino"
+    "sketch": "LIS3DH_accelerometer_reader/LIS3DH_accelerometer_reader.ino"
 }

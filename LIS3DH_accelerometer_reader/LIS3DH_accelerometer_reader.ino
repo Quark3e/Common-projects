@@ -1,7 +1,7 @@
 #include <Wire.h> //adafruit neopixel
 #include <SPI.h>
 #include <Adafruit_LIS3DH.h>
-#include <Adafruit_Sensor.h>
+#include <Adafruit_Sensor.h> //Adafruit Unified Sensor by Adafruit <info@adafruit.com>
 
 //for software SPI
 #define LIS3DH__CLK 13
