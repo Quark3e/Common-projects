@@ -64,7 +64,7 @@ void loop() {
     int y_accel = event.acceleration.y;
     int z_accel = event.acceleration.z;
 
-    Serial.println("Z level acceleration: " + x_accel);
-    Serial.println("Y level acceleration: " + y_accel);
+    Serial.print("Z level acceleration: " + x_accel);
+    Serial.print("Y level acceleration: " + y_accel);
     Serial.println("Z level acceleration: " + z_accel);
 }
