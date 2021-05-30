@@ -3,7 +3,7 @@
 #include <Adafruit_LIS3DH.h>
 #include <Adafruit_Sensor.h> //Adafruit Unified Sensor by Adafruit <info@adafruit.com>
 
-//for software SPI
+//for software SPI 
 #define LIS3DH__CLK 13
 #define LIS3DH_MISO 12
 #define LIS3DH_MOSI 11
