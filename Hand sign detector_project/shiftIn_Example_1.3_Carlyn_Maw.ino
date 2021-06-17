@@ -108,7 +108,7 @@ void loop() {
 
   }
 
-//This following is a away to examine the whole
+//This following is a way to examine the whole
 //byte at once and create combinations
 //of settings.
 
@@ -199,7 +199,7 @@ byte shiftIn(int myDataPin, int myClockPin) {
 //we will be holding the clock pin high 8 times (0,..,7) at the
 //end of each time through the for loop
 
-//at the begining of each loop when we set the clock low, it will
+//at the beginning of each loop when we set the clock low, it will
 //be doing the necessary low to high drop to cause the shift
 //register's DataPin to change state based on the value
 //of the next bit in its serial information flow.
