@@ -2,5 +2,5 @@
     "port": "COM6",
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "Hand sign detector_project\\shiftIn_Example_1.3_Carlyn_Maw.ino"
+    "sketch": "fire stuff\\Ignition\\Ignition_cleaned-code.ino"
 }
