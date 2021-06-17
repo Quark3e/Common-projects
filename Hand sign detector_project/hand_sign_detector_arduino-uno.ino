@@ -5,7 +5,7 @@ int clockPin = 7;
 
 byte handsignVar1 = 72;
 
-char inputBits[] = {
+char inputBits1[] = {
     'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'};
 
 void setup () {
@@ -29,7 +29,7 @@ void loop () {
     Serial.println(handsignVar1, BIN);
 
     for (int n=0; n<=7; n++) {
-        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
+        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits1[n]); }
     }
 
     //note: the bits are written from right to left

@@ -55,7 +55,6 @@
             "includePath": [
                 "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\arduino\\avr\\cores\\arduino",
                 "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\arduino\\avr\\variants\\standard",
-                "C:\\Users\\aa82637\\Desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\libraries\\Servo\\src",
                 "c:\\users\\aa82637\\desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include",
                 "c:\\users\\aa82637\\desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include-fixed",
                 "c:\\users\\aa82637\\desktop\\dokument\\arduino-1.8.13-windows\\arduino-1.8.13\\hardware\\tools\\avr\\avr\\include"
