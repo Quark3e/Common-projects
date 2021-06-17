@@ -5,7 +5,7 @@
             "name": "Win32",
             "compilerPath": "",
             "compilerArgs": [],
-            "intelliSenseMode": "msvc-x64",
+            "intelliSenseMode": "${default}",
             "includePath": [
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_Unified_Sensor",
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_LIS3DH",
@@ -17,6 +17,8 @@
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_LIS3DH",
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\arduino_113723\\src",
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\arduino_113723\\src",
+                "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\arduino\\arduino-1.8.15\\libraries\\Servo",
+                "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\arduino\\arduino-1.8.15\\libraries\\Servo\\src",
                 "C:\\Users\\erikg\\Documents\\Arduino\\libraries\\EduIntro\\src",
                 "C:\\Users\\erikg\\Documents\\Arduino\\libraries\\Servo\\src",
                 "\\eduad.stockholm.se\\dfsroot\\stu\\home9\\aa82637\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel",
