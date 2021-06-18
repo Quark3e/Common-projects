@@ -47,7 +47,7 @@ void loop () {
     // so the furthest left bit (like the 1 in 10000000)
     // is the bit from pin 7 on the shift register starting from pin 0
 
-    switch (handsignVar1) {
+    switch (handsignVar2) {
 
         case 0b0000000000010011:
             Serial.println("Bird");
