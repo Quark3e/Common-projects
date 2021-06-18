@@ -1,12 +1,16 @@
 
+
+int clockPin = 7;
 int latchPin = 8;
 int dataPin = 9;
-int clockPin = 7;
+int dataPin2 = 10;
+int dataPin3 = 11;
 
 byte handsignVar1 = 72;
+byte handsignVar2 = 72;
 
-char inputBits1[] = {
-    'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'};
+char inputBits[] = {
+    'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8', 'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'null1', 'null2', 'null3'};
 
 void setup () {
     
@@ -15,6 +19,8 @@ void setup () {
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, INPUT);
+    pinMode(dataPin2, INPUT);
+    pinMode(dataPin3, INPUT);
 
 }
 
@@ -26,10 +32,16 @@ void loop () {
 
     handsignVar1 = shiftIn(dataPin, clockPin);
 
+    // handsignVar1 = for (int a=1; a<=24; a++) { 
+    //     if (a<=8) { shiftIn(dataPin, clockPin); }
+    //     else if (a<=16) { shiftln(dataPin2, clockPin); }
+    //     else (a<=24) { shiftln(dataPin3, clockPin); }
+    //     }
+
     Serial.println(handsignVar1, BIN);
 
     for (int n=0; n<=7; n++) {
-        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits1[n]); }
+        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
     }
 
     //note: the bits are written from right to left
@@ -39,16 +51,16 @@ void loop () {
 
     switch (handsignVar1) {
 
-        case :
-            Serial.println("");
-            break;
+        // case :
+        //     Serial.println("");
+        //     break;
         
-        case :
-            Serial.println("");
-            break;
+        // case :
+        //     Serial.println("");
+        //     break;
 
-        default:
-            Serial.println("Nothing. Nada, niet");
+        // default:
+        //     Serial.println("Nothing. Nada, niet");
     }
     Serial.println("-------------------");
     
