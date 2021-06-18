@@ -101,6 +101,8 @@ void loop () {
         default:
             Serial.println("Nothing. Nada, niet");
     }
+
+    
     Serial.println("-------------------");
     
     delay(500); //crucial delay!
