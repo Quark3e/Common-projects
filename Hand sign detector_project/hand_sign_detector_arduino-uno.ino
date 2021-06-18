@@ -38,9 +38,9 @@ void loop () {
     
     Serial.println(handsignVar1, BIN);
 
-    // for (int n=0; n<=15; n++) {
-    //     if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
-    // }
+    for (int n=0; n<=15; n++) {
+        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
+    }
 
     //NOTE: the bits are written from right to left
     // i.e bit to the right is first char character
