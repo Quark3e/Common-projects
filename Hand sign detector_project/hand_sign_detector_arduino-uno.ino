@@ -8,9 +8,12 @@ int dataPin3 = 11;
 
 byte handsignVar1 = 72;
 byte handsignVar2 = 72;
+byte handsignVar3 = 72;
+
 
 char inputBits[] = {
-    'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8', 'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'null1', 'null2', 'null3'};
+    'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
+    'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'null1', 'null2', 'null3'};
 
 void setup () {
     
@@ -31,36 +34,72 @@ void loop () {
     digitalWrite(latchPin, LOW);
 
     handsignVar1 = shiftIn(dataPin, clockPin);
+    handsignVar2 = shiftIn(dataPin2, clockPin);
+    handsignVar3 = shiftIn(dataPin3, clockPin);
 
-    // handsignVar1 = for (int a=1; a<=24; a++) { 
-    //     if (a<=8) { shiftIn(dataPin, clockPin); }
-    //     else if (a<=16) { shiftln(dataPin2, clockPin); }
-    //     else (a<=24) { shiftln(dataPin3, clockPin); }
-    //     }
+    // Serial.println(handsignVar1, BIN);
 
-    Serial.println(handsignVar1, BIN);
+    // for (int n=0; n<=7; n++) {
+    //     if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
+    // }
 
-    for (int n=0; n<=7; n++) {
-        if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
-    }
-
-    //note: the bits are written from right to left
+    //NOTE: the bits are written from right to left
     // i.e bit to the right is first char character
     // so the furthest left bit (like the 1 in 10000000)
-    // is the bit from pin 7 on the shift register
+    // is the bit from pin 7 on the shift register starting from pin 0
 
     switch (handsignVar1) {
 
-        // case :
-        //     Serial.println("");
-        //     break;
+        case 0b00010011:
+            Serial.println("Bird (1/2)");
+            break;
         
-        // case :
-        //     Serial.println("");
-        //     break;
+        case 0b00000001:
+            Serial.println("Boar (1/2)");
+            break;
 
-        // default:
-        //     Serial.println("Nothing. Nada, niet");
+        case 0b00100000:
+            Serial.println("Dog (1/2)");
+            break;
+
+        case 0b00010001:
+            Serial.println("Dragon (1/2)");
+            break;
+
+        case 0b00000010:
+            Serial.println("Hare (1/2)");
+            break;
+
+        case 0b00000011:
+            Serial.println("Horse (full (special case))");
+            break;
+
+        case 0b00001111:
+            Serial.println("Monkey (1/2)");
+            break;
+
+        case 0b00001100:
+            Serial.println("Ox (full)");
+            break;
+
+        case 0b10000111:
+            Serial.println("Ram (1/2)");
+            break;
+
+        case 0b00100100:
+            Serial.println("Rat (1/2)");
+            break;
+
+        case 0b11100001:
+            Serial.println("Serpent (1/2)");
+            break;
+
+        case 0b11100111:
+            Serial.println("Tiger (1/2)");
+            break;
+
+        default:
+            Serial.println("Nothing. Nada, niet");
     }
     Serial.println("-------------------");
     
