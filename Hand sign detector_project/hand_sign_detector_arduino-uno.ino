@@ -4,16 +4,15 @@ int clockPin = 7;
 int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
-int dataPin3 = 11;
 
-byte handsignVar1 = 72;
-byte handsignVar2 = 72;
-byte handsignVar3 = 72;
-
+byte handsignVar1 = 65535; //65,535 = 11111111 11111111
+byte handsignVar2 = 65535;
 
 char inputBits[] = {
     'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
-    'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'null1', 'null2', 'null3'};
+    'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'Lf2', 'Lf3', 'Lf9'};
+
+    
 
 void setup () {
     
@@ -23,7 +22,6 @@ void setup () {
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, INPUT);
     pinMode(dataPin2, INPUT);
-    pinMode(dataPin3, INPUT);
 
 }
 
@@ -35,11 +33,12 @@ void loop () {
 
     handsignVar1 = shiftIn(dataPin, clockPin);
     handsignVar2 = shiftIn(dataPin2, clockPin);
-    handsignVar3 = shiftIn(dataPin3, clockPin);
+    
+    handsignVar2 = (handsignVar2<<8) + handsignVar1;
+    
+    Serial.println(handsignVar1, BIN);
 
-    // Serial.println(handsignVar1, BIN);
-
-    // for (int n=0; n<=7; n++) {
+    // for (int n=0; n<=15; n++) {
     //     if (handsignVar1 & (1 << n) ) { Serial.println(inputBits[n]); }
     // }
 
@@ -50,59 +49,59 @@ void loop () {
 
     switch (handsignVar1) {
 
-        case 0b00010011:
-            Serial.println("Bird (1/2)");
+        case 0b0000000000010011:
+            Serial.println("Bird");
             break;
         
-        case 0b00000001:
-            Serial.println("Boar (1/2)");
+        case 0b0111111000000001:
+            Serial.println("Boar");
             break;
 
-        case 0b00100000:
-            Serial.println("Dog (1/2)");
+        case 0b0001000100100000:
+            Serial.println("Dog");
             break;
 
-        case 0b00010001:
-            Serial.println("Dragon (1/2)");
+        case 0b0000000000010001:
+            Serial.println("Dragon");
             break;
 
-        case 0b00000010:
-            Serial.println("Hare (1/2)");
+        case 0b0100000000000010:
+            Serial.println("Hare");
             break;
 
-        case 0b00000011:
-            Serial.println("Horse (full (special case))");
+        case 0b0000000000000011:
+            Serial.println("Horse (special case)");
             break;
 
-        case 0b00001111:
-            Serial.println("Monkey (1/2)");
+        case 0b1000111000001111:
+            Serial.println("Monkey");
             break;
 
-        case 0b00001100:
-            Serial.println("Ox (full)");
+        case 0b0000000000001100:
+            Serial.println("Ox");
             break;
 
-        case 0b10000111:
-            Serial.println("Ram (1/2)");
+        case 0b0001111110000111:
+            Serial.println("Ram");
             break;
 
-        case 0b00100100:
-            Serial.println("Rat (1/2)");
+        case 0b0100000000100100:
+            Serial.println("Rat");
             break;
 
-        case 0b11100001:
-            Serial.println("Serpent (1/2)");
+        case 0b0001111111100001:
+            Serial.println("Serpent");
             break;
 
-        case 0b11100111:
-            Serial.println("Tiger (1/2)");
+        case 0b0001111111100111:
+            Serial.println("Tiger");
             break;
 
         default:
             Serial.println("Nothing. Nada, niet");
     }
 
-    
+
     Serial.println("-------------------");
     
     delay(500); //crucial delay!
