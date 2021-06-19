@@ -7,11 +7,15 @@ int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
 int signalingLED = 3;
-
 int breakVal = 0;
 
-byte handsignVar1 = 65535;
-byte handsignVar2 = 65535;
+int signReadVal;
+
+int FireballJutsu;
+int LightningCutterJutsu;
+
+byte handSealVar1 = 65535;
+byte handSealVar2 = 65535;
 
 char inputBits[] = {
     'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
@@ -19,9 +23,11 @@ char inputBits[] = {
 char jutsu[12] = {
     'null'};
 
-char fireballJutsu[12] = {
+char Fireball[6] = {
     'Serpent', 'Ram', 'Monkey', 'Boar', 'Horse', 'Tiger'};
-
+char Chidori[3] = {
+    'Ox', 'Hare', 'Monkey'};
+    
 
 void setup () {
     
@@ -47,15 +53,15 @@ void loop () {
         digitalWrite(latchPin, HIGH);
         delayMicroseconds(20);
         digitalWrite(latchPin, LOW);
-        handsignVar1 = shiftIn(dataPin, clockPin);
-        handsignVar2 = shiftIn(dataPin2, clockPin);
-        handsignVar2 = (handsignVar2<<8) + handsignVar1;
+        handSealVar1 = shiftIn(dataPin, clockPin);
+        handSealVar2 = shiftIn(dataPin2, clockPin);
+        handSealVar2 = (handSealVar2<<8) + handSealVar1;
     
-        Serial.println(handsignVar1, BIN);
+        Serial.println(handSealVar1, BIN);
     
         if (resetButton == LOW) {break;}
 
-        switch (handsignVar2) {
+        switch (handSealVar2) {
             case 0b0000000000010011:
                 Serial.println("Bird");
                 jutsu[i]= "Bird";
@@ -109,12 +115,24 @@ void loop () {
                 if (i>=1) {i=i-1;}
         }
         breakVal = 0;
-        for (int j=0; j<=i; j++) { if (jutsu[j] != fireballJutsu[j]) {breakVal = 1; break;} }
+
+        if (jutsu[0] == Fireball[0]) {
+            for (int j=0; j<=i; j++) {
+                if (jutsu[j] != Fireball[j]) {break;}
+                if (j == 5) { FireStyle(FireballJutsu); } //since array of 6 characters is read from 0 to 5.
+            }
+        }
+        if (jutsu[0] == Chidori[0]) {
+            for (int j=0; j<=i; j++) {
+                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} //last jutsu array compare must change breakVal
+                if (j == 2) { LightningStyle(LightningCutterJutsu); }
+            }
+        }   else { breakVal = 1; }
+
         delay(100);
+
+
         if (breakVal == 1) {break;}
-
-        
-
         delay(1000);
     }
 
@@ -155,7 +173,6 @@ byte shiftIn(int myDataPin, int myClockPin) {
 
         if (temp) {
             pinState = 1;
-
             myDataIn = myDataIn | (1 << k);
         }
         else {
@@ -163,8 +180,16 @@ byte shiftIn(int myDataPin, int myClockPin) {
         }
         digitalWrite(myClockPin, 1);
     }
-
     return myDataIn;
 }
 
-// void SignReader()
+
+void FireStyle(int FireballJutsu) {
+    Serial.println("Katon: Goukakyuu no Jutsu!");
+    breakVal = 1;
+}
+
+void LightningStyle(int LightningCutterJutsu) {
+    Serial.println("Raiton: Chidori!");
+    breakVal = 1;
+}

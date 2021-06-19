@@ -10,7 +10,7 @@ int flame = 2;
 int pos = 0;
 int flame_sensor = A2; // variable to store the value coming from the sensor
 int buttonPin = 12;
-int buttonIgniter = 0;
+int buttonIgniter;
 
 const int max_SoundThresh = 481;
 const int min_SoundThresh = 503;
@@ -156,33 +156,33 @@ void loop()
        //the sequence ends
        //}
        
-  }
+}
 
-  void FireButton(int buttonIgniter) {
+void FireButton(int buttonIgniter) {
+  int buttonValue = digitalRead(buttonPin);
+  for (pos = 92; pos <= 10; pos +=1) {
+    myservo.write(pos);
+    delay(10);
+  }
+  delay(100);
+  for (int i=0; i<=49; i++) {
+    digitalWrite(relay, HIGH);
+    delay(5);
+  }
+  digitalWrite(relay, LOW);
+  for (buttonValue = 0; buttonValue == 0; digitalRead(buttonPin)) {
+    digitalRead(buttonPin);
     int buttonValue = digitalRead(buttonPin);
-    for (pos = 92; pos <= 10; pos +=1) {
-      myservo.write(pos);
-      delay(10);
-    }
-    delay(100);
-    for (int i=0; i<=49; i++) {
-      digitalWrite(relay, HIGH);
-      delay(5);
-    }
-    digitalWrite(relay, LOW);
-    for (buttonValue = 0; buttonValue == 0; digitalRead(buttonPin)) {
-      digitalRead(buttonPin);
-      int buttonValue = digitalRead(buttonPin);
-      Serial.println(digitalRead(buttonValue));
-      if (buttonValue == 1) {
-        break;
-      }
-    }
-    for (pos = 130; pos >=92; pos-=1) {
-      myservo.write(pos);
-      delay(10);
+    Serial.println(digitalRead(buttonValue));
+    if (buttonValue == 1) {
+      break;
     }
   }
+  for (pos = 130; pos >=92; pos-=1) {
+    myservo.write(pos);
+    delay(10);
+  }
+}
   
 
   
