@@ -119,11 +119,11 @@ void loop () {
         if (jutsu[0] == Fireball[0]) {
             for (int j=0; j<=i; j++) {
                 if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
-                if (j == 3) { FireStyle(FireballJutsu); } //since array of 6 characters is read from 0 to 5.
+                if (j == 3) { FireStyle(FireballJutsu); }
             }
         } else if (jutsu[0] == Chidori[0]) {
             for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} //last jutsu array compare must change breakVal
+                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} 
                 if (j == 2) { LightningStyle(LightningCutterJutsu); }
             }
         }   else { breakVal = 1; }
