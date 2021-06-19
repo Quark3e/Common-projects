@@ -129,7 +129,7 @@ void loop () {
         }   else { breakVal = 1; }
 
 
-        delay(100);
+        delay(500);
         if (breakVal == 1) {break;}
         delay(1000);
     }
