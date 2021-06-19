@@ -23,8 +23,8 @@ char inputBits[] = {
 char jutsu[12] = {
     'null'};
 
-char Fireball[6] = {
-    'Serpent', 'Ram', 'Monkey', 'Boar', 'Horse', 'Tiger'};
+char Fireball[4] = {
+    'Serpent', 'Boar', 'Horse', 'Tiger'};
 char Chidori[3] = {
     'Ox', 'Hare', 'Monkey'};
     
@@ -118,25 +118,23 @@ void loop () {
 
         if (jutsu[0] == Fireball[0]) {
             for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {break;}
-                if (j == 5) { FireStyle(FireballJutsu); } //since array of 6 characters is read from 0 to 5.
+                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
+                if (j == 3) { FireStyle(FireballJutsu); } //since array of 6 characters is read from 0 to 5.
             }
-        }
-        if (jutsu[0] == Chidori[0]) {
+        } else if (jutsu[0] == Chidori[0]) {
             for (int j=0; j<=i; j++) {
                 if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} //last jutsu array compare must change breakVal
                 if (j == 2) { LightningStyle(LightningCutterJutsu); }
             }
         }   else { breakVal = 1; }
 
+
         delay(100);
-
-
         if (breakVal == 1) {break;}
         delay(1000);
     }
 
-    Serial.println("-------------------");
+    Serial.println("Restart -------------------");
 
     delay(1000);
     digitalWrite(signalingLED, HIGH);
@@ -185,11 +183,11 @@ byte shiftIn(int myDataPin, int myClockPin) {
 
 
 void FireStyle(int FireballJutsu) {
-    Serial.println("Katon: Goukakyuu no Jutsu!");
+    Serial.println("Katon: Goukakyuu no Jutsu");
     breakVal = 1;
 }
 
 void LightningStyle(int LightningCutterJutsu) {
-    Serial.println("Raiton: Chidori!");
+    Serial.println("Raiton: Chidori");
     breakVal = 1;
 }
