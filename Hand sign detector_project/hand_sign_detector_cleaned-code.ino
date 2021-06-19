@@ -1,10 +1,12 @@
 
-int resetButton = 4;
 
+int resetButton = 4;
+int startButton = 5;
 int clockPin = 7;
 int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
+int signalingLED = 3;
 
 int breakVal = 0;
 
@@ -14,7 +16,6 @@ byte handsignVar2 = 65535;
 char inputBits[] = {
     'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
     'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'Lf2', 'Lf3', 'Lf9'};
-
 char jutsu[12] = {
     'null'};
 
@@ -26,7 +27,9 @@ void setup () {
     
     Serial.begin(9600);
 
+    pinMode(signalingLED, OUTPUT);
     pinMode(resetButton, INPUT_PULLUP);
+    pinMode(startButton, INPUT_PULLUP);
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, INPUT);
@@ -35,6 +38,10 @@ void setup () {
 
 void loop () {
 
+    digitalRead(startButton);
+    while (startButton == HIGH) {digitalRead(startButton); delay(100);}
+
+    digitalWrite(signalingLED, LOW);
     for (int i=0; i<12; i++) {
 
         digitalWrite(latchPin, HIGH);
@@ -103,47 +110,61 @@ void loop () {
         }
         breakVal = 0;
         for (int j=0; j<=i; j++) { if (jutsu[j] != fireballJutsu[j]) {breakVal = 1; break;} }
-
-
         delay(100);
         if (breakVal == 1) {break;}
+
+        
 
         delay(1000);
     }
 
     Serial.println("-------------------");
 
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+
     delay(500);
 
 }
 
-// byte shiftIn(int myDataPin, int myClockPin) {
-//     int i;
-//     int temp = 0;
-//     int pinState;
 
-//     byte myDataIn = 0;
+byte shiftIn(int myDataPin, int myClockPin) {
+    int k;
+    int temp = 0;
+    int pinState;
 
-//     pinMode(myClockPin, OUTPUT);
-//     pinMode(myDataPin, INPUT);
+    byte myDataIn = 0;
 
-//     for (i=7; i>=0; i--) {
-//         digitalWrite(myClockPin, 0);
-//         delayMicroseconds(0.2);
-//         temp = digitalRead(myDataPin);
+    pinMode(myClockPin, OUTPUT);
+    pinMode(myDataPin, INPUT);
 
-//         if (temp) {
-//             pinState = 1;
+    for (k=7; k>=0; k--) {
+        digitalWrite(myClockPin, 0);
+        delayMicroseconds(0.2);
+        temp = digitalRead(myDataPin);
 
-//             myDataIn = myDataIn | (1 << i);
-//         }
-//         else {
-//             pinState = 0;
-//         }
-//         digitalWrite(myClockPin, 1);
-//     }
+        if (temp) {
+            pinState = 1;
 
-//     return myDataIn;
-// }
+            myDataIn = myDataIn | (1 << k);
+        }
+        else {
+            pinState = 0;
+        }
+        digitalWrite(myClockPin, 1);
+    }
+
+    return myDataIn;
+}
 
 // void SignReader()
