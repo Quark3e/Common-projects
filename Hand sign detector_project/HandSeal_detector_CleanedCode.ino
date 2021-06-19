@@ -1,12 +1,12 @@
 
 
+int signalingLED = 3;
 int resetButton = 4;
 int startButton = 5;
 int clockPin = 7;
 int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
-int signalingLED = 3;
 int breakVal = 0;
 
 int signReadVal;
