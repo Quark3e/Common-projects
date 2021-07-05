@@ -1,5 +1,6 @@
 
 
+int testLED = 2;
 int signalingLED = 3;
 int resetButton = 4;
 int startButton = 5;
@@ -27,12 +28,15 @@ char Fireball[4] = {
     'Serpent', 'Boar', 'Horse', 'Tiger'};
 char Chidori[3] = {
     'Ox', 'Hare', 'Monkey'};
+char Reppusho[5] = {
+    'Serpent', 'Ram', 'Boar', 'Horse', 'Bird'};
     
 
 void setup () {
     
     Serial.begin(9600);
 
+    pinMode(testLED, OUTPUT);
     pinMode(signalingLED, OUTPUT);
     pinMode(resetButton, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
@@ -44,9 +48,11 @@ void setup () {
 
 void loop () {
 
+    breakVal = 0;
     digitalRead(startButton);
     while (startButton == HIGH) {digitalRead(startButton); delay(100);}
 
+    digitalWrite(testLED, LOW);
     digitalWrite(signalingLED, LOW);
     for (int i=0; i<12; i++) {
 
@@ -73,6 +79,16 @@ void loop () {
             case 0b0001000100100000:
                 Serial.println("Dog");
                 jutsu[i]= "Dog";
+                digitalWrite(testLED, HIGH);
+                delay(100);
+                digitalWrite(testLED, LOW);
+                delay(100);
+                digitalWrite(testLED, HIGH);
+                delay(100);
+                digitalWrite(testLED, LOW);
+                delay(100);
+                digitalWrite(testLED, HIGH);
+                delay(1000);
                 break;
             case 0b0000000000010001:
                 Serial.println("Dragon");
@@ -114,6 +130,7 @@ void loop () {
                 Serial.println("Nothing. Nada, niet");
                 if (i>=1) {i=i-1;}
         }
+        digitalWrite(testLED, LOW);
         breakVal = 0;
 
         if (jutsu[0] == Fireball[0]) {
@@ -128,6 +145,8 @@ void loop () {
             }
         }   else { breakVal = 1; }
 
+        digitalRead(resetButton);
+        if (resetButton == LOW) {break;}
 
         delay(500);
         if (breakVal == 1) {break;}
@@ -138,15 +157,19 @@ void loop () {
 
     delay(1000);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delay(900);
     digitalWrite(signalingLED, LOW);
-    delay(1000);
+    delay(700);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delay(500);
     digitalWrite(signalingLED, LOW);
-    delay(1000);
+    delay(300);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delay(100);
+    digitalWrite(signalingLED, LOW);
+    delay(100);
+    digitalWrite(signalingLED, HIGH);
+    delay(100);
     digitalWrite(signalingLED, LOW);
 
     delay(500);
