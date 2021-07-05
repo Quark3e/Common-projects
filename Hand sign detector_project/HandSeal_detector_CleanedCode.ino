@@ -15,8 +15,8 @@ int signReadVal;
 int FireballJutsu;
 int LightningCutterJutsu;
 
-byte handSealVar1 = 65535;
-byte handSealVar2 = 65535;
+byte handSealVar1 = 255;
+byte handSealVar2 = 255;
 
 char inputBits[] = {
     'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
@@ -61,13 +61,13 @@ void loop () {
         digitalWrite(latchPin, LOW);
         handSealVar1 = shiftIn(dataPin, clockPin);
         handSealVar2 = shiftIn(dataPin2, clockPin);
-        handSealVar2 = (handSealVar2<<8) + handSealVar1;
+        uint16_t handSeal = handSealVar1 | (handSealVar2<<8);
     
         Serial.println(handSealVar1, BIN);
     
         if (resetButton == LOW) {break;}
 
-        switch (handSealVar2) {
+        switch (handSeal) {
             case 0b0000000000010011:
                 Serial.println("Bird");
                 jutsu[i]= "Bird";
