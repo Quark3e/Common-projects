@@ -1,10 +1,10 @@
 note:
-Maybe create the array 2-dimensionally
-char jutsu [i][j] = {{}};
-where j is the longest length of a word+1 (because of null terminating character) and it'll be default set
-and i is the number of words/elements in total.
-So inside each case it's jutsu[i][j] = "/name/";
-
+Maybe create the array 2-dimensionally inside the for loop
+"char jutsu[1+i][8] = {{ }};"
+where j is the longest length of a word+1 (7+1) (because +1 is the null terminating character) and
+i is the number of words/elements in total so 1+i as i starts at 0 so number of strings first defined as 1+0.
+So inside each case it's "char jutsu[1+i][8] = "/name/";"
+Thus when i>0 it'll lead to "char jutsu[1+1][8] = {jutsu[i], "/name/"};
 
 
 
