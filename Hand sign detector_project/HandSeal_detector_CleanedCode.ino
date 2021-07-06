@@ -4,12 +4,14 @@ int testLED = 2;
 int signalingLED = 3;
 int resetButton = 4;
 int startButton = 5;
-int clockPin = 7;
+
+int clockPin = 6;
+int clockPin2 = 7;
 int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
-int breakVal = 0;
 
+int breakVal = 0;
 int signReadVal;
 
 int FireballJutsu;
@@ -18,18 +20,14 @@ int LightningCutterJutsu;
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
 
-char inputBits[] = {
-    'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
-    'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'Lf2', 'Lf3', 'Lf9'};
-char jutsu[12] = {
-    'null'};
 
+char jutsu[12];
 char Fireball[4] = {
-    'Serpent', 'Boar', 'Horse', 'Tiger'};
+    'p', 'b', 'f', 'o'};
 char Chidori[3] = {
-    'Ox', 'Hare', 'Monkey'};
+    'h', 'e', 'g'}; 
 char Reppusho[5] = {
-    'Serpent', 'Ram', 'Boar', 'Horse', 'Bird'};
+    'p', 'l', 'b', 'f', 'a'};
     
 
 void setup () {
@@ -54,77 +52,72 @@ void loop () {
 
     digitalWrite(testLED, LOW);
     digitalWrite(signalingLED, LOW);
-    for (int i=0; i<12; i++) {
 
+
+    for (int i=0; i<12; i++) {
         digitalWrite(latchPin, HIGH);
         delayMicroseconds(20);
         digitalWrite(latchPin, LOW);
         handSealVar1 = shiftIn(dataPin, clockPin);
-        handSealVar2 = shiftIn(dataPin2, clockPin);
+        handSealVar2 = shiftIn(dataPin2, clockPin2);
         uint16_t handSeal = handSealVar1 | (handSealVar2<<8);
     
+        Serial.println("----------");
         Serial.println(handSealVar1, BIN);
-    
+        Serial.println("----------");
+
+        digitalRead(resetButton);
         if (resetButton == LOW) {break;}
 
         switch (handSeal) {
             case 0b0000000000010011:
                 Serial.println("Bird");
-                jutsu[i]= "Bird";
+                jutsu[i]= 'a';
                 break;
             case 0b0111111000000001:
                 Serial.println("Boar");
-                jutsu[i]= "Boar";
+                jutsu[i]= 'b';
                 break;
             case 0b0001000100100000:
                 Serial.println("Dog");
-                jutsu[i]= "Dog";
-                digitalWrite(testLED, HIGH);
-                delay(100);
-                digitalWrite(testLED, LOW);
-                delay(100);
-                digitalWrite(testLED, HIGH);
-                delay(100);
-                digitalWrite(testLED, LOW);
-                delay(100);
-                digitalWrite(testLED, HIGH);
-                delay(1000);
+                jutsu[i]= 'c';
+                TestLEDActivation();
                 break;
             case 0b0000000000010001:
                 Serial.println("Dragon");
-                jutsu[i]= "Dragon";
+                jutsu[i]= 'd';
                 break;
             case 0b0100000000000010:
                 Serial.println("Hare");
-                jutsu[i]= "Hare";
+                jutsu[i]= 'e';
                 break;
             case 0b0000000000000011:
                 Serial.println("Horse (special case)");
-                jutsu[i]= "Horse";
+                jutsu[i]= 'f';
                 break;
             case 0b1000111000001111:
                 Serial.println("Monkey");
-                jutsu[i]= "Monkey";
+                jutsu[i]= 'g';
                 break;
             case 0b0000000000001100:
                 Serial.println("Ox");
-                jutsu[i]= "Ox";
+                jutsu[i]= 'h';
                 break;
             case 0b0001111110000111:
                 Serial.println("Ram");
-                jutsu[i]= "Ram";
+                jutsu[i]= 'l';
                 break;
             case 0b0100000000100100:
                 Serial.println("Rat");
-                jutsu[i]= "Rat";
+                jutsu[i]= 'm';
                 break;
             case 0b0001111111100001:
                 Serial.println("Serpent");
-                jutsu[i]= "Serpent";
+                jutsu[i]= 'p';
                 break;
             case 0b0001111111100111:
                 Serial.println("Tiger");
-                jutsu[i]= "Tiger";
+                jutsu[i]= 'o';
                 break;
             default:
                 Serial.println("Nothing. Nada, niet");
@@ -153,7 +146,7 @@ void loop () {
         delay(1000);
     }
 
-    Serial.println("Restart -------------------");
+    Serial.println("---------- Restart ----------");
 
     delay(1000);
     digitalWrite(signalingLED, HIGH);
@@ -204,6 +197,18 @@ byte shiftIn(int myDataPin, int myClockPin) {
     return myDataIn;
 }
 
+void TestLEDActivation () {
+    digitalWrite(testLED, HIGH);
+    delay(100);
+    digitalWrite(testLED, LOW);
+    delay(100);
+    digitalWrite(testLED, HIGH);
+    delay(100);
+    digitalWrite(testLED, LOW);
+    delay(100);
+    digitalWrite(testLED, HIGH);
+    delay(1000);
+}
 
 void FireStyle(int FireballJutsu) {
     Serial.println("Katon: Goukakyuu no Jutsu");
@@ -214,3 +219,5 @@ void LightningStyle(int LightningCutterJutsu) {
     Serial.println("Raiton: Chidori");
     breakVal = 1;
 }
+
+//letters used: i, j, k, 
