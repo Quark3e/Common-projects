@@ -1,5 +1,6 @@
 
 
+int testLED = 2;
 int resetButton = 4;
 int startButton = 5;
 
@@ -24,6 +25,7 @@ void setup () {
     
     Serial.begin(9600);
 
+    pinMode(testLED, OUTPUT);
     pinMode(resetButton, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
     pinMode(latchPin, OUTPUT);
@@ -34,6 +36,7 @@ void setup () {
 
 void loop () {
 
+    digitalWrite(testLED, LOW);
     digitalRead(startButton);
     while (startButton == HIGH) {digitalRead(startButton); delay(100);}
 
@@ -49,6 +52,7 @@ void loop () {
         if (handSeal & (1 << n) ){
             Serial.println(inputBits[n]);
             Serial.println("------------");
+            TestLEDActivation();
         }
     }
     delay(500);
@@ -80,4 +84,10 @@ byte shiftIn(int myDataPin, int myClockPin) {
         digitalWrite(myClockPin, 1);
     }
     return myDataIn;
+}
+
+void TestLEDActivation () {
+    digitalWrite(testLED, HIGH);
+    delay(1000);
+    digitalWrite(testLED, LOW);
 }
