@@ -16,7 +16,7 @@ int signReadVal;
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
 
-char inputBits[16][5] = {
+String inputBits[16] = {
     "Lb1", "Lb2", "Lb3", "Lb4", "Lb5", "Lb6", "Lb7", "Lb8",
     "Lb9", "Lb10", "Lb11", "Lb12", "Lb13", "Lf2", "Lf3", "Lf9" };
 
