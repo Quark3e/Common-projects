@@ -47,26 +47,7 @@ void loop () {
 
     for (int n=0; n<=15; n++) {
         if (handSeal & (1 << n) ){
-            //print the value of the array location
-            //Serial.println(inputBits[n]);
-            // if (n == 0) {Serial.printLn("Lb1");}
-            // if (n == 1) {Serial.printLn("Lb2");}
-            // if (n == 2) {Serial.printLn("Lb3");}
-            // if (n == 3) {Serial.printLn("Lb4");}
-            // if (n == 4) {Serial.printLn("Lb5");}
-            // if (n == 5) {Serial.printLn("Lb6");}
-            // if (n == 6) {Serial.printLn("Lb7");}
-            // if (n == 7) {Serial.printLn("Lb8");}
-            // if (n == 8) {Serial.printLn("Lb9");}
-            // if (n == 9) {Serial.printLn("Lb10");}
-            // if (n == 10) {Serial.printLn("Lb11");}
-            // if (n == 11) {Serial.printLn("Lb12");}
-            // if (n == 12) {Serial.printLn("Lb13");}
-            // if (n == 13) {Serial.printLn("Lf2");}
-            // if (n == 14) {Serial.printLn("Lf3");}
-            // if (n == 15) {Serial.printLn("Lf9");}
             Serial.println(inputBits[n]);
-
             Serial.println("------------");
         }
     }
