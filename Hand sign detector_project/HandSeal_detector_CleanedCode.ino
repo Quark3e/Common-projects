@@ -28,7 +28,7 @@ char Chidori[3] = {
     'h', 'e', 'g'}; 
 char Reppusho[5] = {
     'p', 'l', 'b', 'f', 'a'};
-    
+
 
 void setup () {
     
@@ -92,7 +92,7 @@ void loop () {
                 jutsu[i]= 'e';
                 break;
             case 0b0000000000000011:
-                Serial.println("Horse (special case)");
+                Serial.println("Horse");
                 jutsu[i]= 'f';
                 break;
             case 0b1000111000001111:
