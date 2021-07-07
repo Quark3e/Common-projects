@@ -40,6 +40,7 @@ void setup () {
     pinMode(startButton, INPUT_PULLUP);
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
+    pinMode(clockPin2, OUTPUT);
     pinMode(dataPin, INPUT);
     pinMode(dataPin2, INPUT);
 }
@@ -147,26 +148,9 @@ void loop () {
     }
 
     Serial.println("---------- Restart ----------");
-
-    delay(1000);
-    digitalWrite(signalingLED, HIGH);
-    delay(900);
-    digitalWrite(signalingLED, LOW);
-    delay(700);
-    digitalWrite(signalingLED, HIGH);
-    delay(500);
-    digitalWrite(signalingLED, LOW);
-    delay(300);
-    digitalWrite(signalingLED, HIGH);
-    delay(100);
-    digitalWrite(signalingLED, LOW);
-    delay(100);
-    digitalWrite(signalingLED, HIGH);
-    delay(100);
-    digitalWrite(signalingLED, LOW);
+    SignalingLEDActivation();
 
     delay(500);
-
 }
 
 
@@ -208,6 +192,21 @@ void TestLEDActivation () {
     delay(100);
     digitalWrite(testLED, HIGH);
     delay(1000);
+}
+
+void SignalingLEDActivation () {
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
 }
 
 void FireStyle(int FireballJutsu) {

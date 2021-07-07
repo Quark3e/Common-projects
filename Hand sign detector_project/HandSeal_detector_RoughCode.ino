@@ -1,75 +1,86 @@
 
 
+int testLED = 2;
+int signalingLED = 3;
 int resetButton = 4;
 int startButton = 5;
-int clockPin = 7;
+
+int clockPin = 6;
+int clockPin2 = 7;
 int latchPin = 8;
 int dataPin = 9;
 int dataPin2 = 10;
-int signalingLED = 3;
-int breakVal = 0;
 
+int breakVal = 0;
 int signReadVal;
 
 int FireballJutsu;
 int LightningCutterJutsu;
 
-byte handSealVar1 = 65535; //65,535 = 11111111 11111111
-byte handSealVar2 = 65535;
+byte handSealVar1 = 255; //255 decimal is 11111110 binary.
+byte handSealVar2 = 255;
 
-char inputBits[] = {
-    'Lb1', 'Lb2', 'Lb3', 'Lb4', 'Lb5', 'Lb6', 'Lb7', 'Lb8',
-    'Lb9', 'Lb10', 'Lb11', 'Lb12', 'Lb13', 'Lf2', 'Lf3', 'Lf9'};
-char jutsu[12] = { // [0] is null because it is compared later on
-    'null'};
 
-// Default Jutsus. the number in [] is the length of the array
-char Fireball[4] = {
-    'Serpent', 'Boar', 'Horse', 'Tiger'};
-char Chidori[3] = {
-    'Ox', 'Hare', 'Monkey'};
+String jutsu[12];
+
+// Default Jutsus. the number in [] is the length of the array/number-of-elements
+String Fireball[4] = {
+    "Serpent", "Boar", "Horse", "Tiger"};
+String Chidori[3] = {
+    "Ox", "Hare", "Monkey"};
+String Reppusho[5] = {
+    "Serpent", "Ram", "Boar", "Horse", "Bird"};
     
 
 void setup () {
     
     Serial.begin(9600);
 
+    pinMode(testLED, OUTPUT);
     pinMode(signalingLED, OUTPUT);
     pinMode(resetButton, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
+    pinMode(clockPin2, OUTPUT);
     pinMode(dataPin, INPUT);
     pinMode(dataPin2, INPUT);
-
 }
 
 void loop () {
 
+    breakVal = 0;
     digitalRead(startButton);
     while (startButton == HIGH) {digitalRead(startButton); delay(100);}
 
+    digitalWrite(testLED, LOW);
     digitalWrite(signalingLED, LOW);
+
     for (int i=0; i<12; i++) {
 
-        digitalWrite(latchPin, HIGH);
+        digitalWrite(latchPin, HIGH); //the latch takes in the input from the parallel input pins and stores it
         delayMicroseconds(20);
         digitalWrite(latchPin, LOW);
         handSealVar1 = shiftIn(dataPin, clockPin);
-        handSealVar2 = shiftIn(dataPin2, clockPin);
-        //this redefinition of handSealVar2 moves the binary numbers to left and places handSealVar1 in, so it's read correctly
-        handSealVar2 = (handSealVar2<<8) + handSealVar1;
+        handSealVar2 = shiftIn(dataPin2, clockPin2);
+        //uint16_t is a 16 bit unsigned integer that stores both bytes in one 16 bit long.
+        //it uses the bitwise operator << to shift one byte 8 "spaces" to the left and combine both with the OR operator (|) to combine both
+        uint16_t handSeal = handSealVar1 | (handSealVar2<<8);
     
-        Serial.println(handSealVar2, BIN);
+        Serial.println("----------");
+        //to print the binary number in binary form (with the BIN)
+        Serial.println(handSeal, BIN);
+        Serial.println("----------");
 
-    //NOTE: the bits are written from right to left
-    // i.e bit to the right is first char character
-    // so the furthest left bit (like the 1 in 10000000)
-    // is the bit from pin 7 on the shift register starting from pin 0
+        //NOTE: the bits are written from right to left
+        // i.e bit to the right is first char character
+        // so the furthest left bit (like the 1 in 10000000)
+        // is the bit from pin 7 on the shift register starting from pin 0
 
+        digitalRead(resetButton);
         if (resetButton == LOW) {break;}
 
-        switch (handSealVar2) {
+        switch (handSeal) {
             case 0b0000000000010011:
                 Serial.println("Bird");
                 jutsu[i]= "Bird";
@@ -81,6 +92,7 @@ void loop () {
             case 0b0001000100100000:
                 Serial.println("Dog");
                 jutsu[i]= "Dog";
+                TestLEDActivation();
                 break;
             case 0b0000000000010001:
                 Serial.println("Dragon");
@@ -122,22 +134,25 @@ void loop () {
                 Serial.println("Nothing. Nada, niet");
                 if (i>=1) {i=i-1;}
         }
+        digitalWrite(testLED, LOW);
         breakVal = 0;
 
         //This if statement compares the jutsu array to the existing jutsus
         if (jutsu[0] == Fireball[0]) {
-            for (int j=0; j<=i; j++) { //fthe for loop is to go through each index val in the array, starting from 0.
+            for (int j=0; j<=i; j++) { //the for loop is to go through each index val in the array, starting from 0.
                 if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
                 if (j == 3) { FireStyle(FireballJutsu); }
                 //since array of 6 characters is read from 0 to 5.
             }
         } else if (jutsu[0] == Chidori[0]) {
             for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
+                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} 
                 if (j == 2) { LightningStyle(LightningCutterJutsu); }
             }
         }   else { breakVal = 1; }
 
+        digitalRead(resetButton);
+        if (resetButton == LOW) {break;}
 
         delay(500);
         if (breakVal == 1) {break;} //the breakVal exits the main loop and resets the jutsu array.
@@ -150,20 +165,10 @@ void loop () {
         if (handSealVar2 & (1 << n) ) { Serial.println(inputBits[n]); }
     }
     
-    delay(1000);
-    digitalWrite(signalingLED, HIGH);
-    delay(1000);
-    digitalWrite(signalingLED, LOW);
-    delay(1000);
-    digitalWrite(signalingLED, HIGH);
-    delay(1000);
-    digitalWrite(signalingLED, LOW);
-    delay(1000);
-    digitalWrite(signalingLED, HIGH);
-    delay(1000);
-    digitalWrite(signalingLED, LOW);
+    Serial.println("---------- Restart ----------");
+    SignalingLEDActivation();
 
-    delay(500); //crucial delay!
+    delay(500); //crucial delay
 }
 
 byte shiftIn(int myDataPin, int myClockPin) {
@@ -193,6 +198,34 @@ byte shiftIn(int myDataPin, int myClockPin) {
         digitalWrite(myClockPin, 1);
     }
     return myDataIn;
+}
+
+void TestLEDActivation () {
+    digitalWrite(testLED, HIGH);
+    delay(100);
+    digitalWrite(testLED, LOW);
+    delay(100);
+    digitalWrite(testLED, HIGH);
+    delay(100);
+    digitalWrite(testLED, LOW);
+    delay(100);
+    digitalWrite(testLED, HIGH);
+    delay(1000);
+}
+
+void SignalingLEDActivation () {
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    delay(1000);
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
 }
 
 //From this point on are the different Jutsus. At the end breakVal is set to 1 so after the Jutsu is performed it
