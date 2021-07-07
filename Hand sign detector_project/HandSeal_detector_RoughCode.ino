@@ -158,12 +158,6 @@ void loop () {
         if (breakVal == 1) {break;} //the breakVal exits the main loop and resets the jutsu array.
         delay(1000);
     }
-
-    Serial.println("Restart -------------------");
-
-    for (int n=0; n<=15; n++) {
-        if (handSealVar2 & (1 << n) ) { Serial.println(inputBits[n]); }
-    }
     
     Serial.println("---------- Restart ----------");
     SignalingLEDActivation();
