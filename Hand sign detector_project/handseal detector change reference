@@ -25,16 +25,7 @@ switch (handSeal) {
             case 0b0001000100100000:
                 Serial.println("Dog");
                 jutsu[i]= "Dog";
-                digitalWrite(testLED, HIGH);
-                delay(100);
-                digitalWrite(testLED, LOW);
-                delay(100);
-                digitalWrite(testLED, HIGH);
-                delay(100);
-                digitalWrite(testLED, LOW);
-                delay(100);
-                digitalWrite(testLED, HIGH);
-                delay(1000);
+                TestLEDActivation();
                 break;
             case 0b0000000000010001:
                 Serial.println("Dragon");
@@ -76,3 +67,73 @@ switch (handSeal) {
                 Serial.println("Nothing. Nada, niet");
                 if (i>=1) {i=i-1;}
         }
+
+
+---------------------------------test way if the above doesn't work
+
+{
+
+char jutsu[12];
+char Fireball[4] = {
+    'p', 'b', 'f', 'o'};
+char Chidori[3] = {
+    'h', 'e', 'g'}; 
+char Reppusho[5] = {
+    'p', 'l', 'b', 'f', 'a'};
+
+switch (handSeal) {
+            case 0b0000000000010011:
+                Serial.println("Bird");
+                jutsu[i]= 'a';
+                break;
+            case 0b0111111000000001:
+                Serial.println("Boar");
+                jutsu[i]= 'b';
+                break;
+            case 0b0001000100100000:
+                Serial.println("Dog");
+                jutsu[i]= 'c';
+                TestLEDActivation();
+                break;
+            case 0b0000000000010001:
+                Serial.println("Dragon");
+                jutsu[i]= 'd';
+                break;
+            case 0b0100000000000010:
+                Serial.println("Hare");
+                jutsu[i]= 'e';
+                break;
+            case 0b0000000000000011:
+                Serial.println("Horse");
+                jutsu[i]= 'f';
+                break;
+            case 0b1000111000001111:
+                Serial.println("Monkey");
+                jutsu[i]= 'g';
+                break;
+            case 0b0000000000001100:
+                Serial.println("Ox");
+                jutsu[i]= 'h';
+                break;
+            case 0b0001111110000111:
+                Serial.println("Ram");
+                jutsu[i]= 'l';
+                break;
+            case 0b0100000000100100:
+                Serial.println("Rat");
+                jutsu[i]= 'm';
+                break;
+            case 0b0001111111100001:
+                Serial.println("Serpent");
+                jutsu[i]= 'p';
+                break;
+            case 0b0001111111100111:
+                Serial.println("Tiger");
+                jutsu[i]= 'o';
+            break;
+        default:
+            Serial.println("Nothing. Nada, niet");
+            if (i>=1) {i=i-1;}
+    }
+
+}
