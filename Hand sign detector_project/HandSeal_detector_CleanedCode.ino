@@ -20,6 +20,7 @@ int LightningCutterJutsu;
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
 
+boolean fireballCompare = true;
 
 String jutsu[12];
 String Fireball[4] = {
