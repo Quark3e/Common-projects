@@ -16,17 +16,21 @@ int signReadVal;
 
 int FireballJutsu;
 int LightningCutterJutsu;
+int GalePalm;
 
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
 
 boolean fireballCompare = true;
+boolean chidoriCompare = true;
+boolean reppushoCompare = true;
 
 String jutsu[12];
-String Fireball[4] = {
-    "Serpent", "Boar", "Horse", "Tiger"};
+//note: place jutsu's in length order
 String Chidori[3] = {
     "Ox", "Hare", "Monkey"};
+String Fireball[4] = {
+    "Serpent", "Boar", "Horse", "Tiger"};    
 String Reppusho[5] = {
     "Serpent", "Ram", "Boar", "Horse", "Bird"};
 
@@ -128,17 +132,26 @@ void loop () {
         digitalWrite(testLED, LOW);
         breakVal = 0;
 
-        if (jutsu[0] == Fireball[0]) {
-            for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
-                if (j == 3) { FireStyle(FireballJutsu); }
-            }
-        } else if (jutsu[0] == Chidori[0]) {
-            for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} 
-                if (j == 2) { LightningStyle(LightningCutterJutsu); }
-            }
-        }   else { breakVal = 1; }
+        for (int n=0; n<=i; n++) {
+            if (Chidori[n] = jutsu[n]) {}
+            else {chidoriCompare = false;}
+        }
+        for (int n=0; n<=i; n++) {
+            if (Fireball[n] = jutsu[n]) {}
+            else {fireballCompare = false;}
+        }
+        for (int n=0; n<=i; n++) {
+            if (Reppusho[n] = jutsu[n]) {}
+            else {reppushoCompare = false;}
+        }
+
+        if (fireballCompare) {
+            if (i=3) { FireStyle(FireballJutsu);} }
+        else if (chidoriCompare) {
+            if (i=2) { LightningStyle(LightningCutterJutsu);} }
+        else if (reppushoCompare) {
+            if (i=4) { WindStyle(GalePalm);} }
+        else {break;}
 
         digitalRead(resetButton);
         if (resetButton == LOW) {break;}
@@ -210,14 +223,16 @@ void SignalingLEDActivation () {
     digitalWrite(signalingLED, LOW);
 }
 
-void FireStyle(int FireballJutsu) {
-    Serial.println("Katon: Goukakyuu no Jutsu");
-    breakVal = 1;
-}
-
 void LightningStyle(int LightningCutterJutsu) {
     Serial.println("Raiton: Chidori");
     breakVal = 1;
 }
-
-//letters used: i, j, k, 
+void FireStyle(int FireballJutsu) {
+    Serial.println("Katon: Goukakyuu no Jutsu");
+    breakVal = 1;
+}
+void WindStyle(int GalePalm) {
+    Serial.println("Futon: Reppusho");
+    breakVal = 1;
+}
+//letters used: i, k, n, 
