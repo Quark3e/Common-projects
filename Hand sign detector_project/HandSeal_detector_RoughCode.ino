@@ -16,18 +16,21 @@ int signReadVal;
 
 int FireballJutsu;
 int LightningCutterJutsu;
+int GalePalm;
 
 byte handSealVar1 = 255; //255 decimal is 11111110 binary.
 byte handSealVar2 = 255;
 
+boolean fireballCompare = true;
+boolean chidoriCompare = true;
+boolean reppushoCompare = true;
 
 String jutsu[12];
-
 // Default Jutsus. the number in [] is the length of the array/number-of-elements
-String Fireball[4] = {
-    "Serpent", "Boar", "Horse", "Tiger"};
 String Chidori[3] = {
     "Ox", "Hare", "Monkey"};
+String Fireball[4] = {
+    "Serpent", "Boar", "Horse", "Tiger"};    
 String Reppusho[5] = {
     "Serpent", "Ram", "Boar", "Horse", "Bird"};
     
@@ -51,7 +54,7 @@ void loop () {
 
     breakVal = 0;
     digitalRead(startButton);
-    while (startButton == HIGH) {digitalRead(startButton); delay(100);}
+    while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
 
     digitalWrite(testLED, LOW);
     digitalWrite(signalingLED, LOW);
@@ -78,7 +81,7 @@ void loop () {
         // is the bit from pin 7 on the shift register starting from pin 0
 
         digitalRead(resetButton);
-        if (resetButton == LOW) {break;}
+        if (digitalRead(resetButton) == LOW) {break;}
 
         switch (handSeal) {
             case 0b0000000000010011:
@@ -138,21 +141,34 @@ void loop () {
         breakVal = 0;
 
         //This if statement compares the jutsu array to the existing jutsus
-        if (jutsu[0] == Fireball[0]) {
-            for (int j=0; j<=i; j++) { //the for loop is to go through each index val in the array, starting from 0.
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;}
-                if (j == 3) { FireStyle(FireballJutsu); }
-                //since array of 6 characters is read from 0 to 5.
-            }
-        } else if (jutsu[0] == Chidori[0]) {
-            for (int j=0; j<=i; j++) {
-                if (jutsu[j] != Fireball[j]) {breakVal = 1; break;} 
-                if (j == 2) { LightningStyle(LightningCutterJutsu); }
-            }
-        }   else { breakVal = 1; }
+        //These for loops iterates through each elemenet in the "jutsu" array
+        //and compares them to an already existing one. If one element is out of place
+        //it'll set a bool value for that comparison as false
+        for (int n=0; n<=i; n++) {
+            if (Chidori[n] = jutsu[n]) {}
+            else {chidoriCompare = false;}
+        }
+        for (int n=0; n<=i; n++) {
+            if (Fireball[n] = jutsu[n]) {}
+            else {fireballCompare = false;}
+        }
+        for (int n=0; n<=i; n++) {
+            if (Reppusho[n] = jutsu[n]) {}
+            else {reppushoCompare = false;}
+        }
+        //Does each thing if the bool comparison value is true
+        //and if the i value (the length of "jutsu" array) is the same then it'll
+        //then it'll execute the function inside it.
+        if (fireballCompare) {
+            if (i=3) { FireStyle(FireballJutsu);} }
+        else if (chidoriCompare) {
+            if (i=2) { LightningStyle(LightningCutterJutsu);} }
+        else if (reppushoCompare) {
+            if (i=4) { WindStyle(GalePalm);} }
+        else {break;}
 
         digitalRead(resetButton);
-        if (resetButton == LOW) {break;}
+        if (digitalRead(resetButton) == LOW) {break;}
 
         delay(500);
         if (breakVal == 1) {break;} //the breakVal exits the main loop and resets the jutsu array.
@@ -224,12 +240,15 @@ void SignalingLEDActivation () {
 
 //From this point on are the different Jutsus. At the end breakVal is set to 1 so after the Jutsu is performed it
 // resets the jutsu array.
+void LightningStyle(int LightningCutterJutsu) {
+    Serial.println("Raiton: Chidori");
+    breakVal = 1;
+}
 void FireStyle(int FireballJutsu) {
     Serial.println("Katon: Goukakyuu no Jutsu");
     breakVal = 1;
 }
-
-void LightningStyle(int LightningCutterJutsu) {
-    Serial.println("Raiton: Chidori");
+void WindStyle(int GalePalm) {
+    Serial.println("Futon: Reppusho");
     breakVal = 1;
 }

@@ -38,7 +38,7 @@ void loop () {
 
     digitalWrite(testLED, LOW);
     digitalRead(startButton);
-    while (startButton == HIGH) {digitalRead(startButton); delay(100);}
+    while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
 
     digitalWrite(latchPin, HIGH);
     delayMicroseconds(20);

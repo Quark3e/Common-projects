@@ -54,7 +54,7 @@ void loop () {
 
     breakVal = 0;
     digitalRead(startButton);
-    while (startButton == HIGH) {digitalRead(startButton); delay(100);}
+    while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
 
     digitalWrite(testLED, LOW);
     digitalWrite(signalingLED, LOW);
@@ -73,7 +73,7 @@ void loop () {
         Serial.println("----------");
 
         digitalRead(resetButton);
-        if (resetButton == LOW) {break;}
+        if (digitalRead(resetButton) == LOW) {break;}
 
         switch (handSeal) {
             case 0b0000000000010011:
@@ -154,7 +154,7 @@ void loop () {
         else {break;}
 
         digitalRead(resetButton);
-        if (resetButton == LOW) {break;}
+        if (digitalRead(resetButton) == LOW) {break;}
 
         delay(500);
         if (breakVal == 1) {break;}
