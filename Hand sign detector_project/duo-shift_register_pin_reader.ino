@@ -30,6 +30,7 @@ void setup () {
     pinMode(startButton, INPUT_PULLUP);
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
+    pinMode(clockPin2, OUTPUT);
     pinMode(dataPin, INPUT);
     pinMode(dataPin2, INPUT);
 }

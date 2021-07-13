@@ -12,7 +12,6 @@ int breakVal = 0;
 int signReadVal;
 
 byte handSealVar1 = 255;
-byte handSealVar2 = 255;
 
 String inputBits[16] = {
     "Lb1", "Lb2", "Lb3", "Lb4", "Lb5", "Lb6", "Lb7", "Lb8",
@@ -29,7 +28,7 @@ void setup () {
     pinMode(latchPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, INPUT);
-    pinMode(dataPin2, INPUT);
+
 }
 
 void loop () {
