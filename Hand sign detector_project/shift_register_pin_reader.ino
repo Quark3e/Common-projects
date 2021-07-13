@@ -36,7 +36,6 @@ void setup () {
 
 void loop () {
 
-    ledActivate = false;
     digitalWrite(testLED, LOW);
     digitalRead(startButton);
     while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
