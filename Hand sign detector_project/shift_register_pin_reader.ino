@@ -16,8 +16,6 @@ int signReadVal;
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
 
-boolean ledActivate = false;
-
 String inputBits[16] = {
     "Lb1", "Lb2", "Lb3", "Lb4", "Lb5", "Lb6", "Lb7", "Lb8",
     "Lb9", "Lb10", "Lb11", "Lb12", "Lb13", "Lf2", "Lf3", "Lf9" };
@@ -53,13 +51,10 @@ void loop () {
 
     for (int n=0; n<=15; n++) {
         if (handSeal & (1 << n) ){
-            ledActivate = true;
+            Serial.println(inputBits[n]);
+            Serial.println("------------");
+            TestLEDActivation();
         }
-    }
-    if (ledActivate) {
-        Serial.println(inputBits[n]);
-        Serial.println("------------");
-        TestLEDActivation();
     }
     delay(500);
 }
