@@ -1,90 +1,116 @@
+//**************************************************************//
+//  Name    : shiftIn Example 1.3                               //
+//  Author  : Carlyn Maw                                        //
+//  Date    : 25 Jan, 2007                                      //
+//  Version : 1.0                                               //
+//  Notes   : Code for using a CD4021B Shift Register       //
+//          :                                                   //
+//****************************************************************
 
-
-int testLED = 2;
-int resetButton = 4;
-int startButton = 5;
-
-int clockPin = 6;
 int latchPin = 8;
 int dataPin = 9;
+int clockPin = 7;
 
-int breakVal = 0;
-int signReadVal;
+byte switchVar1 = 72;  //01001000
 
-byte handSealVar1 = 255;
+char note2sing[] = {
+  'C', 'd', 'e', 'f', 'g', 'a', 'b', 'c'};
 
-String inputBits[16] = {
-    "Lb1", "Lb2", "Lb3", "Lb4", "Lb5", "Lb6", "Lb7", "Lb8",
-    "Lb9", "Lb10", "Lb11", "Lb12", "Lb13", "Lf2", "Lf3", "Lf9" };
+void setup() {
 
-
-void setup () {
-    
-    Serial.begin(9600);
-
-    pinMode(testLED, OUTPUT);
-    pinMode(resetButton, INPUT_PULLUP);
-    pinMode(startButton, INPUT_PULLUP);
-    pinMode(latchPin, OUTPUT);
-    pinMode(clockPin, OUTPUT);
-    pinMode(dataPin, INPUT);
+  Serial.begin(9600);
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPin, OUTPUT);
+  pinMode(dataPin, INPUT);
 
 }
 
-void loop () {
+void loop() {
 
-    digitalWrite(testLED, LOW);
-    digitalRead(startButton);
-    while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
+  digitalWrite(latchPin,1);
+  delayMicroseconds(20);
+  digitalWrite(latchPin,0);
 
-    digitalWrite(latchPin, HIGH);
-    delayMicroseconds(20);
-    digitalWrite(latchPin, LOW);
+  switchVar1 = shiftIn(dataPin, clockPin);
 
-    handSealVar1 = shiftIn(dataPin, clockPin);
-    handSealVar2 = shiftIn(dataPin2, clockPin2);
-    uint16_t handSeal = handSealVar1 | (handSealVar2<<8);
+  Serial.println(switchVar1, BIN);
 
-    for (int n=0; n<=15; n++) {
-        if (handSeal & (1 << n) ){
-            Serial.println(inputBits[n]);
-            Serial.println("------------");
-            TestLEDActivation();
-        }
+  for (int n=0; n<=7; n++)
+  {
+    if (switchVar1 & (1 << n) ){
+      Serial.println(note2sing[n]);
     }
-    delay(500);
-}
 
+  }
+
+  switch (switchVar1) {
+
+  case 0b00101010:
+    Serial.println("D minor");
+    break;
+
+  case 0b00010101:
+    Serial.println("C major");
+    break;
+
+  case 0b01010100:
+    Serial.println("E minor");
+    break;
+
+  case 0b00101001:
+    Serial.println("F major");
+    break;
+
+  case 0b01010010:
+    Serial.println("G major");
+    break;
+
+  case 0b00100101:
+    Serial.println("A minor");
+    break;
+
+  case 0b01001010:
+    Serial.println("B diminished");
+    break;
+
+  default:
+    Serial.println("Play It, Joe");
+
+  }
+Serial.println("-------------------");
+
+delay(500);
+
+}
 
 byte shiftIn(int myDataPin, int myClockPin) {
-    int k;
-    int temp = 0;
-    int pinState;
 
-    byte myDataIn = 0;
+  int i;
+  int temp = 0;
+  int pinState;
 
-    pinMode(myClockPin, OUTPUT);
-    pinMode(myDataPin, INPUT);
+  byte myDataIn = 0;
 
-    for (k=7; k>=0; k--) {
-        digitalWrite(myClockPin, 0);
-        delayMicroseconds(0.2);
-        temp = digitalRead(myDataPin);
+  pinMode(myClockPin, OUTPUT);
+  pinMode(myDataPin, INPUT);
+  for (i=7; i>=0; i--)
+  {
+    digitalWrite(myClockPin, 0);
 
-        if (temp) {
-            pinState = 1;
-            myDataIn = myDataIn | (1 << k);
-        }
-        else {
-            pinState = 0;
-        }
-        digitalWrite(myClockPin, 1);
+    delayMicroseconds(0.2);
+
+    temp = digitalRead(myDataPin);
+
+    if (temp) {
+      pinState = 1;
+      myDataIn = myDataIn | (1 << i);
     }
-    return myDataIn;
-}
 
-void TestLEDActivation () {
-    digitalWrite(testLED, HIGH);
-    delay(1000);
-    digitalWrite(testLED, LOW);
+    else {
+      pinState = 0;
+
+    }
+    digitalWrite(myClockPin, 1);
+  }
+  return myDataIn;
 }
