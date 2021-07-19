@@ -1,17 +1,9 @@
-//**************************************************************//
-//  Name    : shiftIn Example 1.3                               //
-//  Author  : Carlyn Maw                                        //
-//  Date    : 25 Jan, 2007                                      //
-//  Version : 1.0                                               //
-//  Notes   : Code for using a CD4021B Shift Register       //
-//          :                                                   //
-//****************************************************************
 
 int latchPin = 8;
 int dataPin = 9;
 int clockPin = 7;
 
-byte switchVar1 = 72;  //01001000
+byte switchVar1 = 72;
 
 char note2sing[] = {
   'C', 'd', 'e', 'f', 'g', 'a', 'b', 'c'};
