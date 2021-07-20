@@ -9,30 +9,6 @@ byte switchVar1 = 72;
 char arrayVal[] = {
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
-byte shiftIn(int myDataPin, int myClockPin) {
-  int i;
-  int temp = 0;
-  int pinState;
-  byte myDataIn = 0;
-  pinMode(myClockPin, OUTPUT);
-  pinMode(myDataPin, INPUT);
-  for (i=7; i>=0; i--)
-  {
-    digitalWrite(myClockPin, 0);
-    delayMicroseconds(0.2);
-    temp = digitalRead(myDataPin);
-    if (temp) {
-      pinState = 1;
-      myDataIn = myDataIn | (1 << i);
-    }
-    else {
-      pinState = 0;
-    }
-    digitalWrite(myClockPin, 1);
-  }
-  return myDataIn;
-}
-
 
 void setup() {
 
@@ -47,13 +23,14 @@ void setup() {
 void loop() {
 
   Serial.println("NEWLINE-------------------");
+  while (digitalRead(button) == HIGH) {digitalRead(button);};
+
   digitalWrite(latchPin,1);
   delayMicroseconds(20);
   digitalWrite(latchPin,0);
 
-  while (digitalRead(button) == HIGH) {digitalRead(button);};
 
-  switchVar1 = shiftIn(dataPin, clockPin);
+  switchVar1 = shiftIn(dataPin, clockPin, MSBFIRST);
   delay(100);
   Serial.println(switchVar1, BIN);
 
@@ -104,3 +81,27 @@ Serial.println("-------------------");
 delay(1000);
 
 }
+
+// byte shiftIn(int myDataPin, int myClockPin) {
+//   int i;
+//   int temp = 0;
+//   int pinState;
+//   byte myDataIn = 0;
+//   pinMode(myClockPin, OUTPUT);
+//   pinMode(myDataPin, INPUT);
+//   for (i=7; i>=0; i--)
+//   {
+//     digitalWrite(myClockPin, 0);
+//     delayMicroseconds(0.2);
+//     temp = digitalRead(myDataPin);
+//     if (temp) {
+//       pinState = 1;
+//       myDataIn = myDataIn | (1 << i);
+//     }
+//     else {
+//       pinState = 0;
+//     }
+//     digitalWrite(myClockPin, 1);
+//   }
+//   return myDataIn;
+// }

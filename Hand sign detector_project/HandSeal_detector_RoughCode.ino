@@ -224,17 +224,17 @@ void TestLEDActivation () {
 }
 
 void SignalingLEDActivation () {
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, LOW);
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, LOW);
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, HIGH);
-    delay(1000);
+    delayMicroseconds(1000);
     digitalWrite(signalingLED, LOW);
 }
 

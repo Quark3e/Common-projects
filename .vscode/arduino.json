@@ -2,5 +2,5 @@
     "port": "COM6",
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "Hand sign detector_project\\HandSeal_detector_CleanedCode.ino"
+    "sketch": "Hand sign detector_project\\single-shift_register_pin_reader.ino"
 }
