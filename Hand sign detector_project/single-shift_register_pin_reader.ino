@@ -31,7 +31,7 @@ byte shiftIn(int myDataPin, int myClockPin) {
     }
     Serial.print(pinState);
     Serial.print("shit");
-    Serial.println (dataIn, BIN);
+    Serial.println (myDataIn, BIN);
     digitalWrite(myClockPin, 1);
   }
   return myDataIn;
