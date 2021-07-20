@@ -1,12 +1,38 @@
 
+int button = 4;
 int latchPin = 8;
 int dataPin = 9;
 int clockPin = 7;
 
 byte switchVar1 = 72;
 
-char note2sing[] = {
-  'C', 'd', 'e', 'f', 'g', 'a', 'b', 'c'};
+char arrayVal[] = {
+  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+
+byte shiftIn(int myDataPin, int myClockPin) {
+  int i;
+  int temp = 0;
+  int pinState;
+  byte myDataIn = 0;
+  pinMode(myClockPin, OUTPUT);
+  pinMode(myDataPin, INPUT);
+  for (i=7; i>=0; i--)
+  {
+    digitalWrite(myClockPin, 0);
+    delayMicroseconds(0.2);
+    temp = digitalRead(myDataPin);
+    if (temp) {
+      pinState = 1;
+      myDataIn = myDataIn | (1 << i);
+    }
+    else {
+      pinState = 0;
+    }
+    digitalWrite(myClockPin, 1);
+  }
+  return myDataIn;
+}
+
 
 void setup() {
 
@@ -14,25 +40,29 @@ void setup() {
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, INPUT);
+  pinMode(button, INPUT_PULLUP);
 
 }
 
 void loop() {
 
+  Serial.println("NEWLINE-------------------");
   digitalWrite(latchPin,1);
   delayMicroseconds(20);
   digitalWrite(latchPin,0);
 
-  switchVar1 = shiftIn(dataPin, clockPin);
+  while (digitalRead(button) == HIGH) {digitalRead(button);};
 
+  switchVar1 = shiftIn(dataPin, clockPin);
+  delay(100);
   Serial.println(switchVar1, BIN);
 
   for (int n=0; n<=7; n++)
   {
     if (switchVar1 & (1 << n) ){
-      Serial.println(note2sing[n]);
+      Serial.println(arrayVal[n]);
     }
-
+  Serial.println("-------------------");
   }
 
   switch (switchVar1) {
@@ -71,38 +101,6 @@ void loop() {
   }
 Serial.println("-------------------");
 
-delay(500);
+delay(1000);
 
-}
-
-byte shiftIn(int myDataPin, int myClockPin) {
-
-  int i;
-  int temp = 0;
-  int pinState;
-
-  byte myDataIn = 0;
-
-  pinMode(myClockPin, OUTPUT);
-  pinMode(myDataPin, INPUT);
-  for (i=7; i>=0; i--)
-  {
-    digitalWrite(myClockPin, 0);
-
-    delayMicroseconds(0.2);
-
-    temp = digitalRead(myDataPin);
-
-    if (temp) {
-      pinState = 1;
-      myDataIn = myDataIn | (1 << i);
-    }
-
-    else {
-      pinState = 0;
-
-    }
-    digitalWrite(myClockPin, 1);
-  }
-  return myDataIn;
 }
