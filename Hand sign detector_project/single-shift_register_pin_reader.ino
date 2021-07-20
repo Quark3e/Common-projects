@@ -17,7 +17,6 @@ void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, INPUT);
   pinMode(button, INPUT_PULLUP);
-
 }
 
 void loop() {
