@@ -9,7 +9,7 @@ byte switchVar1 = 255;
 char arrayVal[] = {
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
-
+ 
 byte shiftIn(int myDataPin, int myClockPin) {
   int i;
   int temp = 0;
