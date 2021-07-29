@@ -1,4 +1,4 @@
-
+//this is a simpler version
 
 int testLED = 2;
 int signalingLED = 3;
