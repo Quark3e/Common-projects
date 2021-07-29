@@ -1,4 +1,5 @@
-//this is a simpler version
+//This is a simpler version that uses the arduino's onboard pin's instead.
+//Much more rudimental.
 
 int testLED = 2;
 int signalingLED = 3;
