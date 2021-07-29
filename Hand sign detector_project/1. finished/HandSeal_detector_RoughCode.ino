@@ -14,9 +14,9 @@ int dataPin2 = 10;
 int breakVal = 0;
 int signReadVal;
 
-int FireballJutsu;
-int LightningCutterJutsu;
-int GalePalm;
+void FireballJutsu();
+void LightningCutterJutsu();
+void GalePalm();
 
 byte handSealVar1 = 255; //255 decimal is 11111110 binary.
 byte handSealVar2 = 255;
