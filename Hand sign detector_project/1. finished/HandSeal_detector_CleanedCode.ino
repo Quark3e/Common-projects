@@ -26,7 +26,6 @@ boolean chidoriCompare = true;
 boolean reppushoCompare = true;
 
 String jutsu[12];
-//note: place jutsu's in length order
 String Chidori[3] = {
     "Ox", "Hare", "Monkey"};
 String Fireball[4] = {
