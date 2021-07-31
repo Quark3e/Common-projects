@@ -168,7 +168,7 @@ void loop () {
 
     delay(500);
 }
-
+ 
 
 byte shiftIn(int myDataPin, int myClockPin) {
     int k;
