@@ -18,6 +18,7 @@ int signReadVal;
 void FireballJutsu();
 void LightningCutterJutsu();
 void GalePalm();
+bool boolFunction(String ArrayVal, int j);
 
 byte handSealVar1 = 255;
 byte handSealVar2 = 255;
@@ -224,7 +225,12 @@ void SignalingLEDActivation () {
     digitalWrite(signalingLED, LOW);
 }
 
-
+bool boolFunction(string ArrayVal, int j) {
+    bool boolAnswer = true;
+	if (ArrayVal == testArray[j]) {}
+    else {boolAnswer = false;}
+	return boolAnswer;
+}
 void LightningStyle(int LightningCutterJutsu) {
     Serial.println("Raiton: Chidori");
     breakVal = 1;
@@ -237,4 +243,4 @@ void WindStyle(int GalePalm) {
     Serial.println("Futon: Reppusho");
     breakVal = 1;
 }
-//letters used: i, k, n, 
+//letters used: i, j, k, n, 
