@@ -1,0 +1,17 @@
+
+hand seals: binary
+combination: String Arrays
+
+code:
+- Wait for start button:
+- Loop through every contact pin until a pin is activated.
+    -delay //the time it takes for every contact to be pressed.
+- Create several if() statements for each pin:
+    -inside each if() statement create/mold the byte with bitwise operator << .
+- Go through for() loop:
+    -go through switch() case to create a String() jutsu[] array.
+    -compare jutsu[] array element with elements of other arrays.
+    -if a jutsu[] element doesn't match with an array element, define the 
+     compareBool variable as false.
+    -if a jutsu[] element has matched with another array element where the for
+     loop n is same as the compared arrays length+1, then execute the arrays' function
