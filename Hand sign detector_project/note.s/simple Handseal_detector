@@ -1,3 +1,9 @@
+input/contact pins:
+    -pin: 2, 3, 4, 5, 6, 7, 8, 9, 10
+button pins:
+    -start button: 11
+led pins:
+    -resetLED: 12, 
 
 hand seals: binary
 combination: String Arrays
