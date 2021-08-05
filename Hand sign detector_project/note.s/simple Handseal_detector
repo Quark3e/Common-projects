@@ -1,12 +1,29 @@
 input/contact pins:
-    -pin: 2, 3, 4, 5, 6, 7, 8, 9, 10
+    -pin: 2, 3, 4, 5, 6, 7, 8, 9
 button pins:
-    -start button: 11
+    -start button: 10, 
 led pins:
-    -resetLED: 12, 
+    -resetLED: 12, testLED: 13, 
 
 hand seals: byte variable
 combination: String Arrays
+
+Functions:
+- Byte function: Read contact pins and create each byte "profile"
+  with several if() statements and bitwise operators. 
+  Parameters: None
+  Return: a byte variable
+- Array function: Edit global "jutsu[]" array with byte parameter
+  using switch case statements.
+  Parameters: byte variable, integer
+  Return: 0
+- Boolean function (multiple separate functions for each
+  existing jutsu): Compares jutsu[] array with *one* existing array
+  by comparing elements in both arrays with a for loop and changing a local
+  boolean value (with default: "true", but "false" if an element doesn't match).
+  The for loops iteration counter is the length of array, starting at 0.
+  Parameters: None
+  Return: the local boolean value
 
 code:
 - Wait for start button:

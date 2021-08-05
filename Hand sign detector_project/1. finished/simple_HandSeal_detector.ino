@@ -1,32 +1,6 @@
 //This is a simpler version that uses the arduino's onboard pin's instead.
 //Much more rudimental.
 
-int testLED = 2;
-int signalingLED = 3;
-int resetButton = 4;
-int startButton = 5;
-
-int clockPin = 6;
-int clockPin2 = 7;
-int latchPin = 8;
-int dataPin = 9;
-int dataPin2 = 10;
-
-int breakVal = 0;
-int signReadVal;
-
-void FireballJutsu();
-void LightningCutterJutsu();
-void GalePalm();
-bool boolFunction(String ArrayVal, int j);
-
-byte handSealVar1 = 255;
-byte handSealVar2 = 255;
-
-boolean fireballCompare = true;
-boolean chidoriCompare = true;
-boolean reppushoCompare = true;
-
 String jutsu[12];
 //note: place jutsu's in length order
 String Chidori[3] = {
@@ -37,29 +11,55 @@ String Reppusho[5] = {
     "Serpent", "Ram", "Boar", "Horse", "Bird"};
 
 
+int contactPin_1 = 2;
+int contactPin_2 = 3;
+int contactPin_3 = 4;
+int contactPin_4 = 5;
+int contactPin_5 = 6;
+int contactPin_6 = 7;
+int contactPin_7 = 8;
+int contactPin_8 = 9;
+
+int startButton = 10;
+int resetLED = 12;
+int testLED = 13;
+
+int breakVal = 0;
+
+byte contactReader_function();
+void arrayCreator_function(byte byteVar, int i);
+bool boolFunction(String ArrayVal, int j);
+
+void FireBall_Jutsu();
+void LightningCutter_Jutsu();
+void GalePalm();
+
+byte handSealVar1 = 255;
+byte handSealVar2 = 255;
+
+boolean fireballCompare = true;
+boolean chidoriCompare = true;
+boolean reppushoCompare = true;
+
+
 void setup () {
     
     Serial.begin(9600);
 
-    pinMode(testLED, OUTPUT);
-    pinMode(signalingLED, OUTPUT);
-    pinMode(resetButton, INPUT_PULLUP);
+    pinMode(contactPin_1, INPUT_PULLUP);
+    pinMode(contactPin_2, INPUT_PULLUP);
+    pinMode(contactPin_3, INPUT_PULLUP);
+    pinMode(contactPin_4, INPUT_PULLUP);
+    pinMode(contactPin_5, INPUT_PULLUP);
+    pinMode(contactPin_6, INPUT_PULLUP);
+    pinMode(contactPin_7, INPUT_PULLUP);
+    pinMode(contactPin_8, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
-    pinMode(latchPin, OUTPUT);
-    pinMode(clockPin, OUTPUT);
-    pinMode(clockPin2, OUTPUT);
-    pinMode(dataPin, INPUT);
-    pinMode(dataPin2, INPUT);
+    pinMode(resetLED, OUTPUT);
+    pinMode(testLED, OUTPUT);
 }
 
 void loop () {
-
-    breakVal = 0;
-    digitalRead(startButton);
-    while (digitalRead(startButton) == HIGH) {digitalRead(startButton); delay(100);}
-
-    digitalWrite(testLED, LOW);
-    digitalWrite(signalingLED, LOW);
 
 
     for (int i=0; i<12; i++) {
@@ -133,7 +133,7 @@ void loop () {
         }
         digitalWrite(testLED, LOW);
         breakVal = 0;
-
+        uint
         for (int n=0; n<=i; n++) {
             if (Chidori[n] = jutsu[n]) {}
             else {chidoriCompare = false;}
@@ -148,9 +148,9 @@ void loop () {
         }
 
         if (fireballCompare) {
-            if (i=3) { FireStyle(FireballJutsu);} }
+            if (i=3) { FireStyle(FireBall_Jutsu);} }
         else if (chidoriCompare) {
-            if (i=2) { LightningStyle(LightningCutterJutsu);} }
+            if (i=2) { LightningStyle(LightningCutter_Jutsu);} }
         else if (reppushoCompare) {
             if (i=4) { WindStyle(GalePalm);} }
         else {break;}
@@ -164,37 +164,25 @@ void loop () {
     }
 
     Serial.println("---------- Restart ----------");
-    SignalingLEDActivation();
+    resetLED_activation();
 
     delay(500);
 }
- 
 
-byte shiftIn(int myDataPin, int myClockPin) {
-    int k;
-    int temp = 0;
-    int pinState;
+byte contactReader_function() {
+    byte returnValue = 72;
+    int val1 != digitalRead(contactPin_1);
+    int val2 != digitalRead(contactPin_2);
+    int val3 != digitalRead(contactPin_3);
+    int val4 != digitalRead(contactPin_4);
+    int val5 != digitalRead(contactPin_5);
+    int val6 != digitalRead(contactPin_6);
+    int val7 != digitalRead(contactPin_7);
+    int val8 != digitalRead(contactPin_8);
 
-    byte myDataIn = 0;
+    if ()
 
-    pinMode(myClockPin, OUTPUT);
-    pinMode(myDataPin, INPUT);
-
-    for (k=7; k>=0; k--) {
-        digitalWrite(myClockPin, 0);
-        delayMicroseconds(0.2);
-        temp = digitalRead(myDataPin);
-
-        if (temp) {
-            pinState = 1;
-            myDataIn = myDataIn | (1 << k);
-        }
-        else {
-            pinState = 0;
-        }
-        digitalWrite(myClockPin, 1);
-    }
-    return myDataIn;
+    return returnValue;
 }
 
 void TestLEDActivation () {
@@ -210,19 +198,19 @@ void TestLEDActivation () {
     delay(1000);
 }
 
-void SignalingLEDActivation () {
+void resetLED_activation () {
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, HIGH);
+    digitalWrite(resetLED, HIGH);
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, LOW);
+    digitalWrite(resetLED, LOW);
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, HIGH);
+    digitalWrite(resetLED, HIGH);
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, LOW);
+    digitalWrite(resetLED, LOW);
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, HIGH);
+    digitalWrite(resetLED, HIGH);
     delayMicroseconds(1000);
-    digitalWrite(signalingLED, LOW);
+    digitalWrite(resetLED, LOW);
 }
 
 bool boolFunction(string ArrayVal, int j) {
@@ -231,11 +219,11 @@ bool boolFunction(string ArrayVal, int j) {
     else {boolAnswer = false;}
 	return boolAnswer;
 }
-void LightningStyle(int LightningCutterJutsu) {
+void LightningStyle(int LightningCutter_Jutsu) {
     Serial.println("Raiton: Chidori");
     breakVal = 1;
 }
-void FireStyle(int FireballJutsu) {
+void FireStyle(int FireBall_Jutsu) {
     Serial.println("Katon: Goukakyuu no Jutsu");
     breakVal = 1;
 }
