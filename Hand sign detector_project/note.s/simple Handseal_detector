@@ -5,7 +5,7 @@ button pins:
 led pins:
     -resetLED: 12, 
 
-hand seals: binary
+hand seals: byte variable
 combination: String Arrays
 
 code:
