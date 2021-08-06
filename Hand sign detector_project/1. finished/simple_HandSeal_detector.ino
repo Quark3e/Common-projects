@@ -21,6 +21,7 @@ int contactPin_7 = 8;
 int contactPin_8 = 9;
 
 int startButton = 10;
+int signalingLED = 11;
 int resetLED = 12;
 int testLED = 13;
 
@@ -38,13 +39,6 @@ void FireBall_Jutsu();
 void LightningCutter_Jutsu();
 void GalePalm();
 
-byte handSealVar1 = 255;
-byte handSealVar2 = 255;
-
-boolean fireballCompare = true;
-boolean chidoriCompare = true;
-boolean reppushoCompare = true;
-
 
 void setup () {
     
@@ -59,11 +53,22 @@ void setup () {
     pinMode(contactPin_7, INPUT_PULLUP);
     pinMode(contactPin_8, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
+    pinMode(signalingLED, OUTPUT);
     pinMode(resetLED, OUTPUT);
     pinMode(testLED, OUTPUT);
 }
 
 void loop () {
+    digitalWrite(signalingLED, LOW);
+    while (startButton) {digitalRead(startButton);}
+    digitalWrite(signalingLED, HIGH);
+    delay(1000);
+    digitalWrite(signalingLED, LOW);
+    bool checker = true;
+    byte checker_compare = 1;
+    while (checker) {
+        if (contactReader_function() >= checker_compare) {checker = false;}
+    }
     
 }
 
@@ -197,12 +202,6 @@ void resetLED_activation () {
     digitalWrite(resetLED, LOW);
 }
 
-bool boolFunction(string ArrayVal, int j) {
-    bool boolAnswer = true;
-	if (ArrayVal == testArray[j]) {}
-    else {boolAnswer = false;}
-	return boolAnswer;
-}
 void LightningStyle(int LightningCutter_Jutsu) {
     Serial.println("Raiton: Chidori");
     breakVal = 1;
