@@ -11,14 +11,14 @@ String Reppusho[5] = {
     "Serpent", "Ram", "Boar", "Horse", "Bird"};
 
 
-int contactPin_1 = 2;
-int contactPin_2 = 3;
-int contactPin_3 = 4;
-int contactPin_4 = 5;
-int contactPin_5 = 6;
-int contactPin_6 = 7;
-int contactPin_7 = 8;
-int contactPin_8 = 9;
+int Lb_1 = 2;
+int Lb_2 = 3;
+int Lb_3 = 4;
+int Lb_4 = 5;
+int Lb_5 = 6;
+int Lb_6 = 7;
+int Lb_7 = 8;
+int Lb_8 = 9;
 
 int startButton = 10;
 int signalingLED = 11;
@@ -44,14 +44,14 @@ void setup () {
     
     Serial.begin(9600);
 
-    pinMode(contactPin_1, INPUT_PULLUP);
-    pinMode(contactPin_2, INPUT_PULLUP);
-    pinMode(contactPin_3, INPUT_PULLUP);
-    pinMode(contactPin_4, INPUT_PULLUP);
-    pinMode(contactPin_5, INPUT_PULLUP);
-    pinMode(contactPin_6, INPUT_PULLUP);
-    pinMode(contactPin_7, INPUT_PULLUP);
-    pinMode(contactPin_8, INPUT_PULLUP);
+    pinMode(Lb_1, INPUT_PULLUP);
+    pinMode(Lb_2, INPUT_PULLUP);
+    pinMode(Lb_3, INPUT_PULLUP);
+    pinMode(Lb_4, INPUT_PULLUP);
+    pinMode(Lb_5, INPUT_PULLUP);
+    pinMode(Lb_6, INPUT_PULLUP);
+    pinMode(Lb_7, INPUT_PULLUP);
+    pinMode(Lb_8, INPUT_PULLUP);
     pinMode(startButton, INPUT_PULLUP);
     pinMode(signalingLED, OUTPUT);
     pinMode(resetLED, OUTPUT);
@@ -59,29 +59,30 @@ void setup () {
 }
 
 void loop () {
+    bool checker = true;
+    byte checker_compare = 1;
     digitalWrite(signalingLED, LOW);
     while (startButton) {digitalRead(startButton);}
     digitalWrite(signalingLED, HIGH);
     delay(1000);
     digitalWrite(signalingLED, LOW);
-    bool checker = true;
-    byte checker_compare = 1;
+
     while (checker) {
         if (contactReader_function() >= checker_compare) {checker = false;}
     }
-    
+
 }
 
 byte contactReader_function() {
     byte returnValue = 0;
-    int val1 != digitalRead(contactPin_1);
-    int val2 != digitalRead(contactPin_2);
-    int val3 != digitalRead(contactPin_3);
-    int val4 != digitalRead(contactPin_4);
-    int val5 != digitalRead(contactPin_5);
-    int val6 != digitalRead(contactPin_6);
-    int val7 != digitalRead(contactPin_7);
-    int val8 != digitalRead(contactPin_8);
+    int val1 != digitalRead(Lb_1);
+    int val2 != digitalRead(Lb_2);
+    int val3 != digitalRead(Lb_3);
+    int val4 != digitalRead(Lb_4);
+    int val5 != digitalRead(Lb_5);
+    int val6 != digitalRead(Lb_6);
+    int val7 != digitalRead(Lb_7);
+    int val8 != digitalRead(Lb_8);
 
     if (val1) {returnValue = returnValue | 1}
     if (val2) {returnValue = returnValue | (1<<2);}
@@ -97,51 +98,51 @@ byte contactReader_function() {
 
 void arrayCreator_function(byte byteVar, int i) {
     switch (byteVar) {
-        case 0b:
+        case 0b00010011:
             Serial.println("Bird");
             jutsu[i]= "Bird";
             break;
-        case 0b:
+        case 0b00000001:
             Serial.println("Boar");
             jutsu[i]= "Boar";
             break;
-        case 0b:
+        case 0b11100000:
             Serial.println("Dog");
             jutsu[i]= "Dog";
             break;
-        case 0b:
+        case 0b00010001:
             Serial.println("Dragon");
             jutsu[i]= "Dragon";
             break;
-        case 0b:
+        case 0b00100010:
             Serial.println("Hare");
             jutsu[i]= "Hare";
             break;
-        case 0b:
+        case 0b00000011:
             Serial.println("Horse");
             jutsu[i]= "Horse";
             break;
-        case 0b:
+        case 0b00001111:
             Serial.println("Monkey");
             jutsu[i]= "Monkey";
             break;
-        case 0b:
+        case 0b00001100:
             Serial.println("Ox");
             jutsu[i]= "Ox";
             break;
-        case 0b:
+        case 0b10000111:
             Serial.println("Ram");
             jutsu[i]= "Ram";
             break;
-        case 0b:
+        case 0b00100100:
             Serial.println("Rat");
             jutsu[i]= "Rat";
             break;
-        case 0b:
+        case 0b11100001:
             Serial.println("Serpent");
             jutsu[i]= "Serpent";
             break;
-        case 0b:
+        case 0b11100111:
             Serial.println("Tiger");
             jutsu[i]= "Tiger";
             break;

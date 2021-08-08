@@ -1,11 +1,28 @@
-input/contact pins:
+contact pins = Lb#
+input/contact pins/Lb#:
     -pin: 2, 3, 4, 5, 6, 7, 8, 9
 button pins:
     -start button: 10, 
 led pins:
     -resetLED: 12, testLED: 13, 
 
-hand seals: byte variable
+contact pin# = Lb# (e.g. contactPin_1 = Lb1)
+
+hand seals->byte combo:
+    Bird:   00010011
+    Boar:   00000001
+    Dog:    11100000
+    Dragon: 00010001
+    Hare:   00100010
+    Horse:  00000011
+    Monkey: 00001111
+    Ox:     00001100
+    Ram:    10000111
+    Rat:    00100100
+    Serpent:11100001
+    Tiger:  11100111
+
+hand seals: byte variable (note: byte variable flipped so furthest on byte is first digit)
 combination: String Arrays
 
 Functions:
