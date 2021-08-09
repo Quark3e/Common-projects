@@ -67,10 +67,12 @@ void loop () {
     delay(1000);
     digitalWrite(signalingLED, LOW);
 
-    while (checker) {
-        if (contactReader_function() >= checker_compare) {checker = false;}
+    for () {
+        while (checker) {
+            if (contactReader_function() >= checker_compare) {checker = false;}
+        }
+        
     }
-
 }
 
 byte contactReader_function() {
