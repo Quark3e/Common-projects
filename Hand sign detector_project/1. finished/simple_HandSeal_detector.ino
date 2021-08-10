@@ -24,6 +24,9 @@ int startButton = 10;
 int signalingLED = 11;
 int resetLED = 12;
 int testLED = 13;
+int ChidoriLED = A0;
+int FireballLED = A1;
+int ReppushoLED = A2;
 
 int breakVal = 0;
 
@@ -56,23 +59,54 @@ void setup () {
     pinMode(signalingLED, OUTPUT);
     pinMode(resetLED, OUTPUT);
     pinMode(testLED, OUTPUT);
+    pinMode(ChidoriLED, OUTPUT);
+    pinMode(FireballLED, OUTPUT);
+    pinMode(ReppushoLED, OUTPUT);
 }
 
 void loop () {
+    digitalWrite(signalingLED, LOW);
+    digitalWrite(resetLED, LOW);
+    digitalWrite(testLED, LOW);
+    digitalWrite(ChidoriLED, LOW);
+    digitalWrite(FireballLED, LOW);
+    digitalWrite(ReppushoLED, LOW);
+
     bool checker = true;
     byte checker_compare = 1;
-    digitalWrite(signalingLED, LOW);
+
     while (startButton) {digitalRead(startButton);}
     digitalWrite(signalingLED, HIGH);
     delay(1000);
     digitalWrite(signalingLED, LOW);
 
-    for () {
+    for (int i=0; i<8; i++) {
         while (checker) {
             if (contactReader_function() >= checker_compare) {checker = false;}
         }
-        
+        digitalWrite(signalingLED, HIGH);
+        arrayCreator_function(contactReader_function, i);
+        Serial.println("---------");
+        Serial.print("Array element: ");
+        Serial.print('i');
+        Serial.println(";");
+        Serial.println("---------");
+        if (i == 2) {
+            if (Chidori_compareFunc()) {LightningCutter_Jutsu();}
+        }
+        if (breakVal) {break;}
+        if (i == 3) {
+            if (Fireball_compareFunc()) {FireBall_Jutsu();}
+        }
+        if (breakVal) {break;}
+        if (i == 4) {
+            if (Reppusho_compareFunc()) {GalePalm();}
+        }
+        if (breakVal) {break;}
+        delay(500);
     }
+    Serial.println("Restarted");
+    Serial.println("------------");
 }
 
 byte contactReader_function() {
@@ -176,6 +210,27 @@ bool Reppusho_compareFunc() {
     return returnVal;
 }
 
+void LightningCutter_Jutsu() {
+    Serial.println("Raiton: Chidori");
+    digitalWrite(ChidoriLED, HIGH);
+
+    delay(1000);
+    breakVal = 1;
+}
+void FireBall_Jutsu() {
+    Serial.println("Katon: Goukakyuu no Jutsu");
+    digitalWrite(FireballLED, HIGH);
+
+    delay(1000);
+    breakVal = 1;
+}
+void GalePalm() {
+    Serial.println("Futon: Reppusho");
+    digitalWrite(ReppushoLED, HIGH);
+
+    delay(1000);
+    breakVal = 1;
+}
 
 void TestLEDActivation () {
     digitalWrite(testLED, HIGH);
@@ -205,16 +260,4 @@ void resetLED_activation () {
     digitalWrite(resetLED, LOW);
 }
 
-void LightningStyle(int LightningCutter_Jutsu) {
-    Serial.println("Raiton: Chidori");
-    breakVal = 1;
-}
-void FireStyle(int FireBall_Jutsu) {
-    Serial.println("Katon: Goukakyuu no Jutsu");
-    breakVal = 1;
-}
-void WindStyle(int GalePalm) {
-    Serial.println("Futon: Reppusho");
-    breakVal = 1;
-}
 //letters used: i, j, k, n, 
