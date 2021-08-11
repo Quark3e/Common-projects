@@ -4,7 +4,7 @@ input/contact pins/Lb#:
 button pins:
     -start button: 10, 
 led pins:
-    -resetLED: 12, testLED: 13, 
+    -
 
 contact pin# = Lb# (e.g. contactPin_1 = Lb1)
 
