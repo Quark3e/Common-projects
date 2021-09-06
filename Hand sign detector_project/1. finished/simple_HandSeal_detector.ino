@@ -182,7 +182,7 @@ void arrayCreator_function(byte byteVar, int i) {
 bool Chidori_compareFunc() {
     bool returnVal = true;
     for (int n=0; n<3; n++) {
-        if (Chidori[n] = jutsu[n]) {}
+        if (Chidori[n] == jutsu[n]) {}
         else {returnVal = false;}
     }
     return returnVal;
@@ -190,7 +190,7 @@ bool Chidori_compareFunc() {
 bool Fireball_compareFunc() {
     bool returnVal = true;
     for (int n=0; n<4; n++) {
-        if (Fireball[n] = jutsu[n]) {}
+        if (Fireball[n] == jutsu[n]) {}
         else {returnVal = false;}
     }
     return returnVal;
@@ -198,7 +198,7 @@ bool Fireball_compareFunc() {
 bool Reppusho_compareFunc() {
     bool returnVal = true;
     for (int n=0; n<5; n++) {
-        if (Chidori[n] = jutsu[n]) {}
+        if (Chidori[n] == jutsu[n]) {}
         else {returnVal = false;}
     }
     return returnVal;
