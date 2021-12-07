@@ -23,7 +23,7 @@ int Lb_8 = 4;
 int startButton = 10;
 int signalLED = 11;
 
-int breakVal = 0;
+bool breakVal = false;
 int loopCount;
 
 byte contactReader_function();
@@ -49,19 +49,19 @@ void setup () {
     pinMode(Lb_6, INPUT_PULLUP);
     pinMode(Lb_7, INPUT_PULLUP);
     pinMode(Lb_8, INPUT_PULLUP);
-    pinMode(startButton, INPUT_PULLUP);
+    //pinMode(startButton, INPUT_PULLUP);
     pinMode(signalLED, OUTPUT);
 }
 
 void loop () {
     bool checker = true;
     byte checker_compare = 1;
-    breakVal = 0;
+    breakVal = false;
     int j;
 
     digitalWrite(signalLED, LOW);
 
-    while (startButton) {digitalRead(startButton);}
+    //while (startButton) {digitalRead(startButton);}
     delay(1000);
 
     for (loopCount=0; loopCount<8; loopCount++) {
@@ -198,7 +198,7 @@ bool Fireball_compareFunc() {
 bool Reppusho_compareFunc() {
     bool returnVal = true;
     for (int n=0; n<5; n++) {
-        if (Chidori[n] == jutsu[n]) {}
+        if (Reppusho[n] == jutsu[n]) {}
         else {returnVal = false;}
     }
     return returnVal;
@@ -208,19 +208,19 @@ void LightningCutter_Jutsu() {
     Serial.println("Raiton: Chidori");
 
     delay(1000);
-    breakVal = 1;
+    breakVal = true;
 }
 void FireBall_Jutsu() {
     Serial.println("Katon: Goukakyuu no Jutsu");
 
     delay(1000);
-    breakVal = 1;
+    breakVal = true;
 }
 void GalePalm() {
     Serial.println("Futon: Reppusho");
 
     delay(1000);
-    breakVal = 1;
+    breakVal = true;
 }
 
 void WaitingText (int j) {

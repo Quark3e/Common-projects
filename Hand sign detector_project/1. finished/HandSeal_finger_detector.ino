@@ -41,14 +41,14 @@ void loop() {
     int val7 = digitalRead(Lb_7);
     int val8 = digitalRead(Lb_8);
 
-    if (val1 != 1) {Serial.print("Lb_1 pressed\n");}
-    if (val2 != 1) {Serial.print("Lb_2 pressed\n");}
-    if (val3 != 1) {Serial.print("Lb_3 pressed\n");}
-    if (val4 != 1) {Serial.print("Lb_4 pressed\n");}
-    if (val5 != 1) {Serial.print("Lb_5 pressed\n");}
-    if (val6 != 1) {Serial.print("Lb_6 pressed\n");}
-    if (val7 != 1) {Serial.print("Lb_7 pressed\n");}
-    if (val8 != 1) {Serial.print("Lb_8 pressed\n");}
+    if (val1 != 1) {Serial.print("thumb finger\n");}
+    if (val2 != 1) {Serial.print("index finger\n");}
+    if (val3 != 1) {Serial.print("middle finger\n");}
+    if (val4 != 1) {Serial.print("ring finger\n");}
+    if (val5 != 1) {Serial.print("pinky finger\n");}
+    if (val6 != 1) {Serial.print("center left\n");}
+    if (val7 != 1) {Serial.print("center middle\n");}
+    if (val8 != 1) {Serial.print("center right\n");}
     
     
     delay(100);
