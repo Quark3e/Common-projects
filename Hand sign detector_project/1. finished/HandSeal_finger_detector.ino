@@ -1,12 +1,22 @@
+/*
+white to brown
+blue to blue
+green to green
+green to brown
+black to orange
+red to red
+yellow to brown
+orange to purple
+*/
 
-int Lb_1 = 2;
+int Lb_1 = 6;
 int Lb_2 = 3;
-int Lb_3 = 4;
-int Lb_4 = 5;
-int Lb_5 = 6;
-int Lb_6 = 7;
-int Lb_7 = 8;
-int Lb_8 = 9;
+int Lb_3 = 2;
+int Lb_4 = 7;
+int Lb_5 = 8;
+int Lb_6 = 9;
+int Lb_7 = 5;
+int Lb_8 = 4;
 
 void setup() {
     Serial.begin(9600);
@@ -39,6 +49,8 @@ void loop() {
     if (val6 != 1) {Serial.print("Lb_6 pressed\n");}
     if (val7 != 1) {Serial.print("Lb_7 pressed\n");}
     if (val8 != 1) {Serial.print("Lb_8 pressed\n");}
-    else {delay(100);}
+    
+    
+    delay(100);
 
 }

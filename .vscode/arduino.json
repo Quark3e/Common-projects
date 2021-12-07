@@ -2,5 +2,5 @@
     "port": "COM6",
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
-    "sketch": "Hand sign detector_project\\1. finished\\simple_HandSeal_detector.ino"
+    "sketch": "Hand sign detector_project\\1. finished\\HandSeal_finger_detector.ino"
 }

@@ -11,14 +11,14 @@ String Reppusho[5] = {
     "Serpent", "Ram", "Boar", "Horse", "Bird"};
 
 
-int Lb_1 = 2;
+int Lb_1 = 6;
 int Lb_2 = 3;
-int Lb_3 = 4;
-int Lb_4 = 5;
-int Lb_5 = 6;
-int Lb_6 = 7;
-int Lb_7 = 8;
-int Lb_8 = 9;
+int Lb_3 = 2;
+int Lb_4 = 7;
+int Lb_5 = 8;
+int Lb_6 = 9;
+int Lb_7 = 5;
+int Lb_8 = 4;
 
 int startButton = 10;
 int signalLED = 11;
