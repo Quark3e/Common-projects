@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "port": "COM4",
-    "sketch": "..\\..\\School-project\\arduino\\ArduinoCOM_7DOF_armRig.ino",
+    "port": "COM6",
+    "sketch": "..\\..\\School-project\\arduino\\ArduinoCOM_7DOF_pca9685-rig\\ArduinoCOM_7DOF_pca9685-rig.ino",
     "programmer": "AVR ISP"
 }
