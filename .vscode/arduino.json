@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "port": "COM6",
-    "sketch": "..\\..\\School-project\\arduino\\ArduinoCOM_7DOF_pca9685-rig\\ArduinoCOM_7DOF_pca9685-rig.ino",
+    "port": "COM5",
+    "sketch": "Ignition\\Ignition.ino",
     "programmer": "AVR ISP"
 }
